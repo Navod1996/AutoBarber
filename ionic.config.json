@@ -1,0 +1,7 @@
+{
+  "name": "AutoBarber",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

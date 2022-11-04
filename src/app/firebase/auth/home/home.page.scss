@@ -1,0 +1,138 @@
+
+ion-content{
+  --ion-background-color: white;
+}
+
+
+
+.title{
+  color: #428cff;
+  text-align: center;
+  font-size:xx-large;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bolder;
+ 
+}
+
+.subtitle{
+  color:black;   
+  font-size:small;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+
+}
+
+ion-card{
+  background-color: white;
+  box-shadow: none;
+  margin-left: 10px;
+  height: 275px;
+}
+
+.buttons-action{
+  margin-left:5px;
+ 
+ 
+}
+
+.login-text{
+  font-size:medium;
+  color:grey;
+  text-align:center;
+  font-family:'Nunito', sans-serif;
+  text-transform:none;   
+}
+
+.signup-text{
+  font-size:small;
+  color:#a8a8a8;
+  text-align:center;
+  font-family:'Nunito', sans-serif;
+  text-transform:none;
+}
+
+.inputs-list {
+  --ion-item-background: var(--page-background);
+
+  .input-item {
+    --padding-start: 0px;
+    --padding-end: 0px;
+    --inner-padding-end: 0px;
+    color: black;
+  }
+
+  .error-container {
+    .error-message {
+      margin: calc(var(--page-margin) / 2) 0px;
+      display: flex;
+      align-items: center;
+      color: var(--ion-color-danger);
+      font-size: 14px;
+
+      ion-icon {
+        padding-inline-end: calc(var(--page-margin) / 2);
+      }
+    }
+  }
+}
+
+
+.login-btn{
+  background-color: turquoise;
+  border-radius: 5px;
+  margin-left:15px;
+  margin-right:15px;
+  font-size:medium;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+ 
+}
+
+.other-auth-options-row {
+  justify-content: space-between;
+  align-items: center;
+
+.forgot-btn {
+  --color: #428cff;
+  font-family: 'Nunito', sans-serif;
+  font-size: x-small;
+  margin-left:40px;
+  margin-right:40px;
+
+  &:focus {
+    outline: none;
+  }
+}
+}
+
+
+.social-auth-options {
+  .options-divider {
+    color: grey;
+    font-weight: bolder;
+    font-family: 'Nunito', sans-serif;
+    margin: var(--page-margin) 0px;
+    text-align: center;
+  }
+
+  .social-auth-btn {
+    margin: 0px;
+
+    &:not(:first-child) {
+      margin-top: var(--page-margin);
+    }
+  }
+}
+
+
+ion-icon {
+  color: black;
+  margin-left: 5px;
+}
+
+.eye {
+  color: black;
+}
+
+
+
