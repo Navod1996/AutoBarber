@@ -28,6 +28,7 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "capacitor-firebase-auth": "^3.0.0",
     "firebase": "^9.13.0",
     "ionic": "^5.4.16",
     "ionicons": "^6.0.3",
