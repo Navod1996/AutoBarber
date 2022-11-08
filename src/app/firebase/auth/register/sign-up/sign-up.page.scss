@@ -1,0 +1,120 @@
+ion-content{
+    --ion-background-color: white;
+  }
+  
+  
+  
+  .title{
+    color: #428cff;
+    text-align: center;
+    font-size:xx-large;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bolder;
+   
+  }
+  
+  .subtitle{
+    color:black;   
+    font-size:small;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+  
+  }
+  
+  ion-card{
+    background-color: white;
+    box-shadow: none;
+    margin-left: 10px;
+    height: 275px;
+  }
+
+  .buttons-action{
+    margin-left:5px;
+   
+   
+  }
+  
+  .login-text{
+    font-size:small;
+    color:#a8a8a8;
+    text-align:center;
+    font-family:'Nunito', sans-serif;
+    text-transform:none;   
+  }
+  
+  .signup-text{
+    font-size:medium;
+    color: grey;
+    text-align:center;
+    font-family:'Nunito', sans-serif;
+    text-transform:none;
+    font-weight: bold;
+  }
+
+  .subcard{
+   
+    height: 200px;
+    margin-top: 0px;
+}
+
+.swiper-slide-active {
+    transform: scale(1.05, 1.05);
+
+    
+}
+
+.swiper-slide {
+    transition: 400ms all ease-in-out;
+}
+
+.card1{
+   
+   box-shadow: none;
+    font-size: medium;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    width: 70%;
+    height: 180px;  
+    border-radius: 12px;        
+}
+
+.img1{
+   object-fit: cover;
+    width: 100%;
+    height: fit-content;
+    fill-opacity: 0;
+    transform: scale(1.1, 1.1) rotate(1deg) ;
+   transition: 600ms all ease-in-out;
+}
+
+.card2{
+    box-shadow: none;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    width: 70%;
+    height: 180px;
+    border-radius: 12px;
+          
+}
+
+.img2{
+   
+    width: fit-content;
+    height: fit-content;
+}
+.card3{
+    box-shadow: none;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    width: 70%;
+    height: 180px;
+    border-radius: 12px;
+   
+}
+
+.img3{
+    
+    width: fit-content;
+    height: fit-content;
+}
+

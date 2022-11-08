@@ -1,0 +1,23 @@
+@import "mixins/ion-color";
+
+
+:root {
+    @include ion-color('facebook') {
+      --ion-color-facebook: #3b5998;
+      --ion-color-facebook-rgb: 59,89,152;
+      --ion-color-facebook-contrast: #ffffff;
+      --ion-color-facebook-contrast-rgb: 255,255,255;
+      --ion-color-facebook-shade: #344e86;
+      --ion-color-facebook-tint: #4f6aa2;
+    }
+  
+    @include ion-color('google') {
+      --ion-color-google: #cc181e;
+      --ion-color-google-rgb: 204,24,30;
+      --ion-color-google-contrast: #ffffff;
+      --ion-color-google-contrast-rgb: 255,255,255;
+      --ion-color-google-shade: #b4151a;
+      --ion-color-google-tint: #d12f35;
+    }
+
+}
