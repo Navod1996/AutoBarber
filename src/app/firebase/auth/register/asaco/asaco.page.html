@@ -71,9 +71,10 @@
 
         <div formGroupName="matching_passwords">
         <ion-item class="input-item">
+          <app-show-hide-password>
           <ion-input type="password" placeholder="Password" formControlName="password" clearInput autocapitalize="off" inputmode="password">
             <ion-icon name="lock-closed"></ion-icon>&nbsp;&nbsp;
-          </ion-input>
+          </ion-input></app-show-hide-password>
         </ion-item>
         <div class="error-container">
           <ng-container *ngFor="let validation of validation_messages.password">
@@ -86,9 +87,10 @@
 
         
         <ion-item class="input-item">
+          <app-show-hide-password>
           <ion-input type="password" placeholder="Confirm Password" formControlName="confirm_password" clearInput autocapitalize="off" inputmode="password">
             <ion-icon name="lock-closed"></ion-icon>&nbsp;&nbsp;
-          </ion-input>
+          </ion-input></app-show-hide-password>
         </ion-item>
         <div class="error-container">
           <ng-container *ngFor="let validation of validation_messages.confirm_password">
@@ -112,7 +114,7 @@
       </ion-list>
       </form>
       
-        <ion-button class="signup-btn" type="submit" expand="block" [disabled]="!signupForm.valid">Sign Up</ion-button>&nbsp;
+        <ion-button class="signup-btn" type="submit" expand="block" [disabled]="!signupForm.valid" [routerLink]="['/dashboard']" >Sign Up</ion-button>&nbsp;
         <div class="error-container" *ngIf="submitError">
           <div class="error-message">
             <ion-icon name="information-circle-outline"></ion-icon>
