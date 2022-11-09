@@ -99,9 +99,14 @@ ion-content{
 
 .img2{
    
-    width: fit-content;
-    height: fit-content;
+  object-fit: cover;
+  width: 100%;
+  height: fit-content;
+  fill-opacity: 0;
+  transform: scale(1.1, 1.1) rotate(1deg) ;
+ transition: 600ms all ease-in-out;
 }
+
 .card3{
     box-shadow: none;
     font-family: 'Nunito', sans-serif;
@@ -113,8 +118,11 @@ ion-content{
 }
 
 .img3{
-    
-    width: fit-content;
-    height: fit-content;
+  object-fit: cover;
+  width: 100%;
+  height: fit-content;
+  fill-opacity: 0;
+  transform: scale(1.1, 1.1) rotate(1deg) ;
+ transition: 600ms all ease-in-out;
 }
 
