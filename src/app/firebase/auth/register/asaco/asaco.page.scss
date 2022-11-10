@@ -125,11 +125,13 @@ ion-card{
       margin: calc(var(--page-margin) / 2) 0px;
       margin-left: 20px;
       margin-right: 20px;
+      height: 30px;
     }
   
     .other-auth-options-row {
       justify-content: flex-end;
       align-items: center;
+      
   
       .login-btn {
         --color: var(--ion-color-secondary);
@@ -146,11 +148,13 @@ ion-card{
         color: var(--ion-color-medium);
             margin: var(--page-margin) 0px;
             text-align: center;
+            font-size: smaller;
       }
   
       .social-auth-btn {
         margin-left: 20px;
       margin-right: 20px;
+      height: 30px;
   
         &:not(:first-child) {
           margin-top: var(--page-margin);

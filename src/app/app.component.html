@@ -1,3 +1,34 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
+<ion-app dir="{{textDir}}">
+  <ion-split-pane contentId="menu-content" when="false">
+    <ion-menu contentId="menu-content" class="app-sidemenu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-row class="user-details-wrapper">
+            <ion-col size="4">
+              <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                <app-image-shell class="user-avatar" animation="spinner" [src]="'./assets/sample-images/ionicthemes_logo.jpg'"></app-image-shell>
+              </app-aspect-ratio>
+            </ion-col>
+            <ion-col class="user-info-wrapper" size="8">
+              <h3 class="user-name">Ionic Themes</h3>
+              <h5 class="user-handle">@IonicThemes</h5>
+            </ion-col>
+          </ion-row>
+          <ion-row class="user-stats-wrapper user-details-wrapper">
+            <ion-col>
+              <span class="user-stat-value">1553</span>
+              <span class="user-stat-name">Following</span>
+            </ion-col>
+            <ion-col>
+              <span class="user-stat-value">537</span>
+              <span class="user-stat-name">Followers</span>
+            </ion-col>
+          </ion-row>
+        </ion-toolbar>
+      </ion-header>
+
+    </ion-menu>
+    <!-- Main app content get's rendered in this router-outlet -->
+    <ion-router-outlet id="menu-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

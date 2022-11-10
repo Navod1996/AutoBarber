@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'sign-up',
     loadChildren: () => import('./firebase/auth/register/sign-up/sign-up.module').then( m => m.SignUpPageModule)
-  },  {
+  },
+  {
     path: 'asaco',
     loadChildren: () => import('./firebase/auth/register/asaco/asaco.module').then( m => m.AsacoPageModule)
   },
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'asanagent',
     loadChildren: () => import('./firebase/auth/register/asanagent/asanagent.module').then( m => m.AsanagentPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
 
 
