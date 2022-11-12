@@ -1,3 +1,4 @@
+<ion-content class="background">
 <ion-app dir="{{textDir}}">
   <ion-split-pane contentId="menu-content" when="false">
     <ion-menu contentId="menu-content" class="app-sidemenu">
@@ -6,7 +7,7 @@
           <ion-row class="user-details-wrapper">
             <ion-col size="4">
               <app-aspect-ratio [ratio]="{w: 1, h: 1}">
-                <app-image-shell class="user-avatar" animation="spinner" [src]="'./assets/sample-images/ionicthemes_logo.jpg'"></app-image-shell>
+                <app-image-shell class="user-avatar" animation="spinner" [src]="'./assets/sample-images/avatar.png'"></app-image-shell>
               </app-aspect-ratio>
             </ion-col>
             <ion-col class="user-info-wrapper" size="8">
@@ -32,3 +33,4 @@
     <ion-router-outlet id="menu-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
+</ion-content>

@@ -28,6 +28,7 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "@nguniversal/express-engine": "^14.2.2",
     "ionic": "^4.1.2",
     "ionicons": "^6.0.3",
     "rxjs": "~6.6.0",

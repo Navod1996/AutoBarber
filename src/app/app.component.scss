@@ -1,0 +1,188 @@
+ ion-content {
+        --ion-background-color: white;
+    }
+
+:host {
+    --page-margin: var(--app-fair-margin);
+    --page-background: var(--app-background-alt-shade);
+  
+    --page-headers-shadow-color: rgba(var(--ion-color-darkest-rgb), 0.4);
+  }
+  
+  // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
+  .app-sidemenu {
+    ion-toolbar {
+      --padding-start: 30px;
+      --padding-end: 30px;
+      --padding-top: 30px;
+      --padding-bottom: 30px;
+      --color: #ffffff;
+    --background: #428cff;
+
+    }
+  
+    ion-content {
+        --ion-background-color: white;
+    }
+  
+    .user-details-wrapper {
+      --ion-grid-column-padding: 0px;
+  
+      // background-color: rgba(var(--ion-color-light-rgb), 0.15);
+      color: var(--ion-color-lightest);
+      padding: var(--page-margin);
+      align-items: center;
+  
+      & + .user-details-wrapper {
+        padding-top: 0px;
+      }
+    }
+  
+    .user-info-wrapper {
+      padding-left: var(--page-margin);
+  
+      .user-name {
+        margin: 0px 0px 5px;
+      }
+  
+      .user-handle {
+        color: var(--ion-color-light-shade);
+        margin: 0px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  
+    .user-stats-wrapper {
+      text-align: center;
+  
+      .user-stat-value {
+        margin-right: 5px;
+        font-weight: 500;
+      }
+  
+      .user-stat-name {
+        color: var(--ion-color-light-shade);
+        font-size: 14px;
+      }
+    }
+  
+    // Menu list items
+    ion-list {
+      --ion-text-color: var(--ion-color-light-shade);
+      --ion-text-color-rgb: var(--ion-color-light-shade-rgb);
+      --ion-item-background: var(--page-background);
+      --ion-item-border-color: transparent;
+  
+      ion-list-header {
+        --color: rgba(var(--ion-color-light-shade-rgb), 0.6);
+  
+        text-transform: uppercase;
+        box-shadow: inset 0px -4px 8px -2px var(--page-headers-shadow-color);
+        padding-inline-start: var(--page-margin);
+  
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+  
+      ion-item {
+        --border-width: 0px !important;
+        --padding-start: var(--page-margin);
+        --background-activated: var(--ion-color-medium);
+      }
+  
+      ion-icon {
+        color: var(--ion-color-light-shade);
+      }
+    }
+
+    app-image-shell.user-avatar {
+        --image-shell-loading-background: rgba(var(--ion-color-light-rgb), 0.15);
+        --image-shell-border-radius: 50%;
+      }
+
+      @media only screen
+  and (min-device-width : 320px)
+  and (max-device-width : 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (device-aspect-ratio: 2/3)
+  // uncomment for only portrait:
+  // and (orientation: portrait)
+  // uncomment for only landscape:
+  // and (orientation: landscape)
+{
+  .app-sidemenu {
+    .user-info-wrapper {
+      .user-name {
+        font-size: 18px;
+      }
+    }
+
+    ion-list {
+      ion-item {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+@media only screen
+  and (min-device-width : 320px)
+  and (max-device-width : 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (device-aspect-ratio: 40 / 71)
+  // uncomment for only portrait:
+  // and (orientation: portrait)
+  // uncomment for only landscape:
+  // and (orientation: landscape)
+{
+  .interests-to-follow-slide {
+    .custom-checkbox {
+      .checkbox-title {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+@media only screen
+  and (min-device-width : 375px)
+  and (max-device-width : 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  // uncomment for only portrait:
+  // and (orientation: portrait)
+  // uncomment for only landscape:
+  // and (orientation: landscape)
+{
+
+}
+
+/* ----------- iPhone X ----------- */
+@media only screen
+  and (min-device-width : 375px)
+  and (max-device-width : 812px)
+  and (-webkit-min-device-pixel-ratio : 3)
+  // uncomment for only portrait:
+  // and (orientation: portrait)
+  // uncomment for only landscape:
+  // and (orientation: landscape)
+{
+
+}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+@media only screen
+  and (min-device-width : 414px)
+  and (max-device-width : 736px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  // uncomment for only portrait:
+  // and (orientation: portrait)
+  // uncomment for only landscape:
+  // and (orientation: landscape)
+{
+
+}
+
+  }
