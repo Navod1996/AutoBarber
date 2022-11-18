@@ -3,7 +3,11 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
+
+
+import { AuthenticationService } from 'src/app/shared/authentication-service';
 
 
 
@@ -17,7 +21,6 @@ export class HomePage implements OnInit  {
   submitError: string;
   redirectLoader: HTMLIonLoadingElement;
   authRedirectResult: Subscription;
-
 
   validation_messages = {
     'email': [
@@ -36,6 +39,8 @@ export class HomePage implements OnInit  {
     public router: Router,
     public route: ActivatedRoute,
     private ngZone: NgZone,
+    public authService: AuthenticationService,
+    public alertController: AlertController,
   ) { 
     this.loginForm = new FormGroup({
       'email': new FormControl('', Validators.compose([
@@ -123,8 +128,38 @@ resetSubmitError() {
   this.submitError = null;
 }
 
+logIn(email, password) {
+this.authService.SignIn(email.value, password.value)
+  
+    .then((res) => {
+      if(this.authService.isEmailVerified) {
+        this.router.navigate(['dashboard']);          
+      } else {
+        window.alert('Email is not verified')
+        return false;
+      }
+    }).catch((error) => {
+      window.alert(error.message)
+    })
 
+
+    }
+
+    async showAlert(header, message) {
+      const alert = await this.alertController.create({
+        header,
+        message,
+        buttons: ['OK'],
+      });
+      await alert.present();
+    }
+   
+   
 
 }
+
+
+
+
 
 

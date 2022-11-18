@@ -65,7 +65,7 @@
     
   
   <ion-button  class="login-btn" type="submit" expand="block" [disabled]="!loginForm.valid"
-  style="text-transform:none;"  routerLink="/dashboard" routerDirection="root" >Login</ion-button>
+  style="text-transform:none;" [routerLink]="['/dashboard']"  >Login</ion-button>
   <div class="error-container" *ngIf="submitError">
     <div class="error-message">
       <ion-icon name="information-circle-outline"></ion-icon>

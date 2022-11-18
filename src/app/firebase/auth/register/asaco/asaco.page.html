@@ -114,7 +114,7 @@
       </ion-list>
       </form>
       
-        <ion-button class="signup-btn" type="submit" expand="block" [disabled]="!signupForm.valid" [routerLink]="['/dashboard']" >Sign Up</ion-button>&nbsp;
+        <ion-button class="signup-btn" type="submit" expand="block" [disabled]="!signupForm.valid" (click)="signUp(email, password)"  >Sign Up</ion-button>&nbsp;
         <div class="error-container" *ngIf="submitError">
           <div class="error-message">
             <ion-icon name="information-circle-outline"></ion-icon>

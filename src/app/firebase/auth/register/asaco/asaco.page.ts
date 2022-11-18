@@ -1,9 +1,13 @@
 import { Component, OnInit,  NgZone } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { MenuController, LoadingController } from '@ionic/angular';
+import { MenuController, LoadingController, AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { UsernameValidator } from 'src/app/validators/username.validators';
+import { VerifyEmailComponent } from 'src/app/register/verify-email/verify-email.component';
+
+
+import { AuthenticationService } from 'src/app/shared/authentication-service'; 
 
 @Component({
   selector: 'app-asaco',
@@ -47,9 +51,11 @@ export class AsacoPage implements OnInit {
 
   constructor(
     public router: Router,
+    public authService: AuthenticationService,
     public route: ActivatedRoute,
     public menu: MenuController,
     public loadingController: LoadingController,
+    public alertController: AlertController
   ) { 
  
     
@@ -82,5 +88,20 @@ export class AsacoPage implements OnInit {
 
   ngOnInit() {
   }
+signUp(email, password){
+    
+
+    this.authService.RegisterUser(email.value, password.value)
+    .then((res) => {
+     
+      this.authService.SendVerificationMail()
+      this.router.navigate(['src/app/register/verify-email/verify-email.component']);
+    }).catch((error) => {
+      window.alert(error.message)
+    })
+}
+
+
 
 }
+
