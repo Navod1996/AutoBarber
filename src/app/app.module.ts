@@ -13,6 +13,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
+import { UserService } from './user_service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,8 @@ import { environment } from '../environments/environment';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  },UserService],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

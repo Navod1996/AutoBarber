@@ -11,11 +11,7 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
+   {
     path: 'sign-up',
     loadChildren: () => import('./firebase/auth/register/sign-up/sign-up.module').then( m => m.SignUpPageModule)
   },
@@ -23,11 +19,7 @@ const routes: Routes = [
     path: 'asaco',
     loadChildren: () => import('./firebase/auth/register/asaco/asaco.module').then( m => m.AsacoPageModule)
   },
-  {
-    path: 'asasp',
-    loadChildren: () => import('./firebase/auth/register/asasp/asasp.module').then( m => m.AsaspPageModule)
-  },
-  {
+   {
     path: 'asanagent',
     loadChildren: () => import('./firebase/auth/register/asanagent/asanagent.module').then( m => m.AsanagentPageModule)
   },
@@ -36,9 +28,27 @@ const routes: Routes = [
     loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
-    path: 'findasp',
-    loadChildren: () => import('./pages/findasp/findasp.module').then( m => m.FindaspPageModule)
+    path: 'argent-dashboard',
+    loadChildren: () => import('./dashboards/argent/argent-dashboard/argent-dashboard.module').then( m => m.ArgentDashboardPageModule)
   },
+ 
+  {
+    path: 'car-owner-dashboard',
+    loadChildren: () => import('./dashboards/car_owner/car-owner-dashboard/car-owner-dashboard.module').then( m => m.CarOwnerDashboardPageModule)
+  },
+  {
+    path: 'garage-owner-dashboard',
+    loadChildren: () => import('./dashboards/garage_owner/garage-owner-dashboard/garage-owner-dashboard.module').then( m => m.GarageOwnerDashboardPageModule)
+  },
+  {
+    path: 'as-a-garage-owner',
+    loadChildren: () => import('./firebase/auth/register/as-a-garage-owner/as-a-garage-owner.module').then( m => m.AsAGarageOwnerPageModule)
+  }
+
+
+
+
+
 
 
 

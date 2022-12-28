@@ -2,14 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.page.html',
   styleUrls: ['./forgot-password.page.scss'],
+
 })
 export class ForgotPasswordPage implements OnInit {
+
+  email: string;
 
   forgotPasswordForm: FormGroup;
 
@@ -22,7 +27,9 @@ export class ForgotPasswordPage implements OnInit {
 
   constructor(
     public router: Router,
-    public menu: MenuController
+    public auth: AngularFireAuth,
+    public menu: MenuController,
+    public alertController: AlertController,
   ) {
     this.forgotPasswordForm = new FormGroup({
       'email': new FormControl('', Validators.compose([
@@ -32,8 +39,23 @@ export class ForgotPasswordPage implements OnInit {
     });
    }
 
-   recoverPassword(): void {
+   async showAlert(header: string, message: string){
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons:["ok"]
+
+    });
+    await alert.present();
+  }
+
+
+async recoverPassword() {
     console.log(this.forgotPasswordForm.value);
+    const res = await this.auth.sendPasswordResetEmail(this.email).then(()=>{
+        this.showAlert('Reset Password','Check your email');
+    });
+
     this.router.navigate(['/home']);
   }
 

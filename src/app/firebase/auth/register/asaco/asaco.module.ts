@@ -19,7 +19,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     AsacoPageRoutingModule,
     ReactiveFormsModule,
     ComponentsModule,
-    RouterModule 
+    RouterModule,
   ],
   declarations: [AsacoPage]
 })

@@ -4,10 +4,14 @@ import { MenuController, LoadingController, AlertController } from '@ionic/angul
 import { Router, ActivatedRoute } from '@angular/router';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { UsernameValidator } from 'src/app/validators/username.validators';
-import { VerifyEmailComponent } from 'src/app/register/verify-email/verify-email.component';
+import { AngularFirestore, } from '@angular/fire/compat/firestore';
+
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
 
 
-import { AuthenticationService } from 'src/app/shared/authentication-service'; 
+//import { AuthenticationService } from 'src/app/shared/authentication-service';
+import { UserService } from 'src/app/user_service';
 
 @Component({
   selector: 'app-asaco',
@@ -19,6 +23,13 @@ export class AsacoPage implements OnInit {
   matching_passwords_group: FormGroup;
   submitError: string;
   redirectLoader: HTMLIonLoadingElement;
+  name: string;
+  email: string;
+  phone: string;
+  location: string;
+  password: string;
+  cPassword: string;
+
 
   validation_messages = {
 
@@ -51,14 +62,17 @@ export class AsacoPage implements OnInit {
 
   constructor(
     public router: Router,
-    public authService: AuthenticationService,
+   // public authService: AuthenticationService,
     public route: ActivatedRoute,
     public menu: MenuController,
     public loadingController: LoadingController,
-    public alertController: AlertController
-  ) { 
- 
-    
+    public alertController: AlertController,
+    public auth: AngularFireAuth,
+    public afStore: AngularFirestore,
+    public userDetails: UserService,
+  ) {
+
+
      this.matching_passwords_group = new FormGroup({
       'password': new FormControl('', Validators.compose([
         Validators.minLength(6),
@@ -88,17 +102,48 @@ export class AsacoPage implements OnInit {
 
   ngOnInit() {
   }
-signUp(email, password){
-    
 
-    this.authService.RegisterUser(email.value, password.value)
-    .then((res) => {
-     
-      this.authService.SendVerificationMail()
-      this.router.navigate(['src/app/register/verify-email/verify-email.component']);
-    }).catch((error) => {
-      window.alert(error.message)
-    })
+  async showAlert(header: string, message: string){
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons:["ok"]
+
+    });
+    await alert.present();
+  }
+
+  async presentAlert(){
+    const alert = await this.alertController.create({
+      header:"Some Error Occured",
+      message: "Please Try Again",
+      buttons:["ok"]
+
+    });
+    await alert.present();
+  }
+async signUp(){
+  const {email,password,name,phone,cPassword} = this;
+  try{
+    const res = await this.auth.createUserWithEmailAndPassword(email,password);
+    this.afStore.doc(`carOwners/${res.user.uid}`).set({
+      userId:res.user.uid,
+      userName:name,
+     userEmail: email,
+      userPhone:phone,
+    });
+    this.userDetails.setUser({
+      userEmail: email,
+      userId:res.user.uid,
+      userName:name,
+      userPhone:phone,
+      });
+    this.router.navigate(['/car-owner-dashboard']);
+   }catch(e) {
+    console.dir(e);
+   this.showAlert('Error Occured',e.message);
+   }
+
 }
 
 

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 import { ForgotPasswordPage } from './forgot-password.page';
 

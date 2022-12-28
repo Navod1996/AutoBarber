@@ -5,9 +5,13 @@ import { Location } from '@angular/common';
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
-
-
-import { AuthenticationService } from 'src/app/shared/authentication-service';
+import { Platform } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
+import { AngularFirestore, } from '@angular/fire/compat/firestore';
+//import { AuthenticationService } from 'src/app/shared/authentication-service';
+import { Button } from 'protractor';
+import { UserService } from 'src/app/user_service';
 
 
 
@@ -21,6 +25,14 @@ export class HomePage implements OnInit  {
   submitError: string;
   redirectLoader: HTMLIonLoadingElement;
   authRedirectResult: Subscription;
+  data: any[]=[];
+  selectedValue:Number = 0;
+  id: string;
+  email: string;
+  password: string;
+  details: any;
+  name: string;
+  phone: string;
 
   validation_messages = {
     'email': [
@@ -33,15 +45,19 @@ export class HomePage implements OnInit  {
     ]
   };
 
-  constructor( 
+  constructor(
+    private platform: Platform,
     public loadingController: LoadingController,
     public location: Location,
     public router: Router,
     public route: ActivatedRoute,
     private ngZone: NgZone,
-    public authService: AuthenticationService,
+    private afStore: AngularFirestore,
+   // public authService: AuthenticationService,
     public alertController: AlertController,
-  ) { 
+    public auth: AngularFireAuth,
+    public user: UserService
+  ) {
     this.loginForm = new FormGroup({
       'email': new FormControl('', Validators.compose([
         Validators.required,
@@ -53,7 +69,7 @@ export class HomePage implements OnInit  {
       ]))
     });
 
-  
+
 
     // Check if url contains our custom 'auth-redirect' param, then show a loader while we receive the getRedirectResult notification
     this.route.queryParams.subscribe(params => {
@@ -62,13 +78,61 @@ export class HomePage implements OnInit  {
         this.presentLoading(authProvider);
       }
     });
+
+    this.platform.ready().then(() => {
+
+        this.data=[{id:1, name: "Car Owner" },{id:2, name: "Garade Owner"}, {id:3, name: "Argent"}];
+    });
   }
 
+  countryChange($event) {
+    console.log($event.target.value) ;
+    this.selectedValue = $event.target.value;
+  }
 
- 
+  async presentAlert(){
+    const alert = await this.alertController.create({
+      header:"Some Error Occured",
+      message: "Please Try Again",
+      buttons:["ok"]
+
+    });
+    await alert.present();
+  }
+
+  async noUserSelectAlert(){
+    const alert = await this.alertController.create({
+      header:"Please select a user!",
+      message: "Please select a user!",
+      buttons:["ok"]
+
+    });
+    await alert.present();
+  }
+
+  async showAlert(header: string, message: string){
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons:["ok"]
+
+    });
+    await alert.present();
+  }
+
 ngOnInit() {
-  this.dismissLoading();
+  this.getDetails();
 }
+
+getDetails(){
+  this.afStore.collection('carOwners').doc().valueChanges()
+.subscribe(singleDoc =>{
+   this.name = singleDoc['userName'];
+   this.email = singleDoc['userEmail'];
+   this.phone = singleDoc['userPhone'];
+});
+
+  };
 
 // Once the auth provider finished the authentication flow, and the auth redirect completes,
 // hide the loader and redirect the user to the profile page
@@ -128,33 +192,97 @@ resetSubmitError() {
   this.submitError = null;
 }
 
-logIn(email, password) {
-this.authService.SignIn(email.value, password.value)
-  
-    .then((res) => {
-      if(this.authService.isEmailVerified) {
-        this.router.navigate(['dashboard']);          
-      } else {
-        window.alert('Email is not verified')
-        return false;
+async logIn() {
+ const {email,password} = this;
+  if(this.selectedValue === 1){
+    try{
+      const res = await this.auth.signInWithEmailAndPassword(email,password);
+      if(res.user){
+        this.afStore.collection('carOwners').doc(res.user.uid).valueChanges()
+        .subscribe(singleDoc =>{
+            this.phone = singleDoc['userPhone'];
+            this.id = singleDoc['userId'];
+        });
+
+        if(res.user.uid ===this.id){
+          this.user.setUser({
+            userEmail: res.user.email,
+            userId:res.user.uid,
+            userName:res.user.displayName,
+            userPhone:this.phone,
+                   });
+                   this.router.navigate(['/car-owner-dashboard']);
+        }else{
+          this.presentAlert();
+        }
+
       }
-    }).catch((error) => {
-      window.alert(error.message)
-    })
+     }catch(e) {
+      console.dir(e);
+     this.showAlert('Error Occured',e.message);
+     }
 
+  }else if(this.selectedValue === 2){
+    try{
+      const res = await this.auth.signInWithEmailAndPassword(email,password);
+      if(res.user){
+        this.afStore.collection('garageOwners').doc(res.user.uid).valueChanges()
+        .subscribe(singleDoc =>{
+            this.phone = singleDoc['userPhone'];
+            this.id = singleDoc['userId'];
+        });
+        if(res.user.uid === this.id){
+          this.user.setUser({
+            userEmail: res.user.email,
+            userId:res.user.uid,
+            userName:res.user.displayName,
+            userPhone:this.phone,
+                   });
+                   this.router.navigate(['/garage-owner-dashboard']);
+        }else{
+          this.presentAlert();
+        }
+      }
+     }catch(e) {
+      console.dir(e);
+     this.showAlert('Error Occured',e.message);
+     }
+
+  } else if(this.selectedValue === 3){
+
+    try{
+      const res = await this.auth.signInWithEmailAndPassword(email,password);
+      if(res.user){
+        this.afStore.collection('agent').doc(res.user.uid).valueChanges()
+        .subscribe(singleDoc =>{
+            this.phone = singleDoc['userPhone'];
+            this.id = singleDoc['userId'];
+        });
+        if(res.user.uid ===this.id){
+          this.user.setUser({
+            userEmail: res.user.email,
+            userId:res.user.uid,
+            userName:res.user.displayName,
+            userPhone:this.phone,
+                   });
+                   this.router.navigate(['/argent-dashboard']);
+        }else{
+          this.presentAlert();
+        }
+               }
+     }catch(e) {
+      console.dir(e);
+     this.showAlert('Error Occured',e.message);
+     }
+  }else{
+    this.noUserSelectAlert();
+  }
 
     }
 
-    async showAlert(header, message) {
-      const alert = await this.alertController.create({
-        header,
-        message,
-        buttons: ['OK'],
-      });
-      await alert.present();
-    }
-   
-   
+
+
+
 
 }
 

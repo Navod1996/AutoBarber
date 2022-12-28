@@ -1,9 +1,13 @@
 import { Component, OnInit,  NgZone } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { MenuController, LoadingController } from '@ionic/angular';
+import { MenuController, LoadingController, AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { UsernameValidator } from 'src/app/validators/username.validators';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
+import { AngularFirestore, } from '@angular/fire/compat/firestore';
+import { UserService } from 'src/app/user_service';
 
 @Component({
   selector: 'app-asanagent',
@@ -15,6 +19,11 @@ export class AsanagentPage implements OnInit {
   matching_passwords_group: FormGroup;
   submitError: string;
   redirectLoader: HTMLIonLoadingElement;
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  cPassword: string;
 
   validation_messages = {
 
@@ -50,9 +59,13 @@ export class AsanagentPage implements OnInit {
     public route: ActivatedRoute,
     public menu: MenuController,
     public loadingController: LoadingController,
-  ) { 
- 
-    
+    public alertController: AlertController,
+    public auth: AngularFireAuth,
+    public afStore: AngularFirestore,
+    public userDetails: UserService,
+  ) {
+
+
      this.matching_passwords_group = new FormGroup({
       'password': new FormControl('', Validators.compose([
         Validators.minLength(6),
@@ -81,6 +94,49 @@ export class AsanagentPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  async showAlert(header: string, message: string){
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons:["ok"]
+
+    });
+    await alert.present();
+  }
+
+  async presentAlert(){
+    const alert = await this.alertController.create({
+      header:"Some Error Occured",
+      message: "Please Try Again",
+      buttons:["ok"]
+
+    });
+    await alert.present();
+  }
+  async signUp(){
+    const {email,password,name,phone,cPassword} = this;
+    try{
+      const res = await this.auth.createUserWithEmailAndPassword(email,password);
+      this.afStore.doc(`agent/${res.user.uid}`).set({
+        userId:res.user.uid,
+        userName:name,
+       userEmail: email,
+        userPhone:phone,
+      });
+      this.userDetails.setUser({
+        userEmail: email,
+        userId:res.user.uid,
+        userName:name,
+        userPhone:phone,
+        });
+      this.router.navigate(['/argent-dashboard']);
+     }catch(e) {
+      console.dir(e);
+     this.showAlert('Error Occured',e.message);
+     }
+
   }
 
 }

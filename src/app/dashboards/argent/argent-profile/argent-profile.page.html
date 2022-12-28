@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<div id="profile" >
+  <div class="profile" >
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-4></ion-col>
+          <ion-col col-4>
+            <img src="assets/icon/profile.png"  />
+          </ion-col>
+          <ion-col col-4></ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-col>
+        <ion-row >
+          <ion-title class="my-label" style="color: black;" >User Name :</ion-title>
+        </ion-row>
+        <ion-row>
+          <ion-title class="my-label" #000000>{{ name }}</ion-title>
+        </ion-row>
+      </ion-col>
+
+
+    </ion-card>
+    <ion-card>
+      <ion-col>
+        <ion-row >
+          <ion-title class="my-label" style="color: black;" >Email :</ion-title>
+        </ion-row>
+        <ion-row>
+          <ion-title class="my-label" #000000>{{ email }}</ion-title>
+        </ion-row>
+      </ion-col>
+
+
+    </ion-card>
+    <ion-card>
+      <ion-col>
+        <ion-row >
+          <ion-title class="my-label" style="color: black;" >Phone No :</ion-title>
+        </ion-row>
+        <ion-row>
+          <ion-title class="my-label" #000000>{{ phone }}</ion-title>
+        </ion-row>
+      </ion-col>
+
+
+    </ion-card>
+    <ion-button  class="login-btn" type="submit" expand="block"
+    style="text-transform:none;" (click)="logout()"  >Log out</ion-button>
+
+  </div>
+</div>
+</ion-content>
