@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, LoadingController } from '@ionic/angular'
 
 @Component({
   selector: 'app-dashboard',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  profile=null;
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
   }

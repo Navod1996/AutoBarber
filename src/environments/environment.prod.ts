@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
 };
+
 export const firebaseConfig = {
   apiKey: "AIzaSyAsa5F9s7OczA1peTPrN08vXWN5pxFFDRg",
   authDomain: "autobarber1.firebaseapp.com",

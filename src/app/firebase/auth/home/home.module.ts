@@ -4,7 +4,6 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
-import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 
 import { ComponentsModule } from '../../../components/components.module';
 
@@ -26,7 +25,6 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectLoggedInToProfile }
   }
 ];

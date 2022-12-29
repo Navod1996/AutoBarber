@@ -1,0 +1,70 @@
+<ion-content class="background" >
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="title"><b>AutoBarber</b></ion-card-title>
+      <ion-card-subtitle class="subtitle"><b>
+        -Best Therapy For Your Vehicle-</b>
+      </ion-card-subtitle>
+      
+    <ion-img src="assets/icon/car.gif"></ion-img>
+    </ion-card-header>
+
+  </ion-card>
+
+  <div class="content">
+    <div class="buttons-action">
+      <ion-button fill="clear" color="dark" size="small" routerLink="/home" routerDirection="root">
+        <p class="login-text">Login</p>
+      </ion-button>
+      <ion-button fill="clear" color="dark" size="small">
+        <p class="signup-text">Signup</p>
+      </ion-button>
+    </div>
+
+    <ion-card class="subcard">
+  
+  <ion-slides [options]="option" class="ion-margin-top">
+      <ion-slide >
+          <ion-card   class="card1" [routerLink]="['/asaco']" >
+            <ion-card-header style="color: #428cff; font-size: small; margin-top: -10px;"><b>As a car owner</b></ion-card-header>
+            <ion-card-content >
+            <ion-img  class="img1"  src="assets/icon/asaco.PNG"></ion-img>
+          </ion-card-content>
+          </ion-card>
+        </ion-slide>
+        
+        <ion-slide>
+
+          <ion-card class="card2" [routerLink]="['/asasp']">
+            <ion-card-header style="color: #428cff; font-size: small; margin-top: -10px;" ><b>As a service provider</b></ion-card-header>
+            <ion-card-content>
+            <ion-img class="img2" src="assets/icon/asasp.PNG"></ion-img>
+          </ion-card-content>
+          </ion-card>
+
+        </ion-slide>
+       
+    <ion-slide>
+          <ion-card class="card3" [routerLink]="['/asanagent']">
+            <ion-card-header style="color: #428cff; font-size: small; margin-top: -10px;" ><b>As an agent</b></ion-card-header>
+            <ion-card-content>
+            <ion-img class="img3" src="assets/icon/asanagent.PNG"></ion-img>
+          </ion-card-content>
+          </ion-card>
+        </ion-slide>          
+
+        </ion-slides>
+      
+    
+    </ion-card>
+    
+    
+           
+      
+      </div>
+  
+  
+ 
+
+</ion-content>

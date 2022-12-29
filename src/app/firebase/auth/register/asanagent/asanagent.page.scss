@@ -1,0 +1,160 @@
+ion-toolbar {
+    --color: #ffffff;
+   --background: #428CFF;
+    height: 45px;
+    
+}
+
+ion-back-button{
+    --color:white;
+    margin-top: -30px;
+    font-size: small;
+    margin-left: -10px;
+    
+    
+}
+
+
+
+ion-content{
+    --ion-background-color: white;
+}
+
+.content{
+    position:fixed;
+    margin-top: 20px;
+    margin-left:-25px;
+   
+  
+}
+
+.title{
+    color:#428cff;
+    font-weight: bolder;
+    text-align: center;
+    font-size:xx-large;
+    font-family: 'Nunito', sans-serif;
+}
+
+.subtitle{
+    color:black; 
+    font-weight: bolder;  
+    font-size:small;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+
+}
+
+
+
+.auth-title{
+    color: black;
+    text-align: center;
+    font-size: medium;
+    font-weight: bold;
+   
+}
+
+.actionbutton{
+    background-color: turquoise;
+    color:black;
+    border-radius: 5px;
+    margin-left:40px;
+    
+    font-size:medium;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+ion-card{
+    background-color: white;
+    box-shadow: none;
+    margin-left: 10px;
+    height:350px;
+}
+
+
+
+
+.signup-content {
+    --background: var(--page-background);
+    --padding-start: var(--page-margin);
+    --padding-end: var(--page-margin);
+    --padding-top: var(--page-margin);
+    --padding-bottom: var(--page-margin);
+  
+    .auth-title {
+      color: var(--ion-color-dark);
+      font-weight: bold;
+      margin-top: calc(var(--page-margin) / 2);
+      margin-bottom: calc(var(--page-margin) * (3/2));
+      letter-spacing: 0.6px;
+    }
+  
+  
+    .inputs-list {
+      --ion-item-background: var(--page-background);
+  
+      .input-item {
+        --padding-start: 10px;
+        --padding-end: 0px;
+        --inner-padding-end: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: black;
+      }
+    }
+  
+    .error-container {
+      .error-message {
+        margin: calc(var(--page-margin) / 2) 0px;
+        display: flex;
+        align-items: center;
+        color: var(--ion-color-danger);
+        font-size: 14px;
+  
+        ion-icon {
+          padding-inline-end: calc(var(--page-margin) / 2);
+          
+        }
+      }
+    }
+  
+    .signup-btn {
+      margin: calc(var(--page-margin) / 2) 0px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  
+    .other-auth-options-row {
+      justify-content: flex-end;
+      align-items: center;
+  
+      .login-btn {
+        --color: var(--ion-color-secondary);
+        margin: 0px;
+  
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  
+    .social-auth-options {
+      .options-divider {
+        color: var(--ion-color-medium);
+            margin: var(--page-margin) 0px;
+            text-align: center;
+      }
+  
+      .social-auth-btn {
+        margin-left: 20px;
+      margin-right: 20px;
+  
+        &:not(:first-child) {
+          margin-top: var(--page-margin);
+        }
+      }
+    }
+  }
