@@ -39,16 +39,19 @@ export class CarOwnerLandingPage implements OnInit {
     this.initializeItems();
 
     const searchTerm = evt.srcElement.value;
-    console.log(searchTerm);
+
     if(searchTerm){
           return;
     }
     this.goalList = this.goalList.filter(currentGoal=>{
+      console.log(this.goalList);
       if(currentGoal.userName && searchTerm){
+        console.log(searchTerm);
         if(currentGoal.userName.toLowerCase().indexOf(searchTerm.toLowerCase())>-1){
           return true;
         }
         return false;
+        console.log('hello');
 
       }
 
