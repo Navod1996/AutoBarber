@@ -32,11 +32,9 @@ export class AsacoPage implements OnInit {
 
 
   validation_messages = {
-
     'name': [
       { type: 'required', message: 'Name is required.' }
     ],
-
     'email': [
       { type: 'required', message: 'Email is required.' },
       { type: 'pattern', message: 'Enter a valid email.' }
@@ -45,7 +43,6 @@ export class AsacoPage implements OnInit {
       { type: 'required', message: 'Phone is required.' },
       { type: 'pattern', message: 'Enter a valid phone number.' }
     ],
-
     'password': [
       { type: 'required', message: 'Password is required.' },
       { type: 'minlength', message: 'Password must be at least 6 characters long.' },
@@ -107,7 +104,7 @@ export class AsacoPage implements OnInit {
     const alert = await this.alertController.create({
       header,
       message,
-      buttons:["ok"]
+      buttons:['ok']
 
     });
     await alert.present();
@@ -115,9 +112,9 @@ export class AsacoPage implements OnInit {
 
   async presentAlert(){
     const alert = await this.alertController.create({
-      header:"Some Error Occured",
-      message: "Please Try Again",
-      buttons:["ok"]
+      header : 'Some Error Occured',
+      message: 'Please Try Again',
+      buttons:['ok']
 
     });
     await alert.present();

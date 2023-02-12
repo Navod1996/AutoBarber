@@ -12,6 +12,7 @@ import { AngularFirestore, } from '@angular/fire/compat/firestore';
 //import { AuthenticationService } from 'src/app/shared/authentication-service';
 import { Button } from 'protractor';
 import { UserService } from 'src/app/user_service';
+import { log } from 'console';
 
 
 
@@ -81,7 +82,7 @@ export class HomePage implements OnInit  {
 
     this.platform.ready().then(() => {
 
-        this.data=[{id:1, name: "Car Owner" },{id:2, name: "Garade Owner"}, {id:3, name: "Argent"}];
+        this.data=[{id:1, name: 'Car Owner' },{id:2, name: 'Garade Owner'}, {id:3, name: 'Argent'}];
     });
   }
 
@@ -92,9 +93,9 @@ export class HomePage implements OnInit  {
 
   async presentAlert(){
     const alert = await this.alertController.create({
-      header:"Some Error Occured",
-      message: "Please Try Again",
-      buttons:["ok"]
+      header:'Some Error Occured',
+      message: 'Please Try Again',
+      buttons:['ok']
 
     });
     await alert.present();
@@ -102,9 +103,9 @@ export class HomePage implements OnInit  {
 
   async noUserSelectAlert(){
     const alert = await this.alertController.create({
-      header:"Please select a user!",
-      message: "Please select a user!",
-      buttons:["ok"]
+      header:'Wrong password',
+      message: 'Please check your password ',
+      buttons:['ok']
 
     });
     await alert.present();
@@ -114,7 +115,7 @@ export class HomePage implements OnInit  {
     const alert = await this.alertController.create({
       header,
       message,
-      buttons:["ok"]
+      buttons:['ok']
 
     });
     await alert.present();
@@ -125,11 +126,12 @@ ngOnInit() {
 }
 
 getDetails(){
-  this.afStore.collection('carOwners').doc().valueChanges()
+  this.afStore.collection('carOwners').doc('7EY4eK7Pi6XSdTeJq6uXuNt79Uv1').valueChanges()
 .subscribe(singleDoc =>{
    this.name = singleDoc['userName'];
    this.email = singleDoc['userEmail'];
    this.phone = singleDoc['userPhone'];
+   console.log(this.email);
 });
 
   };
@@ -196,25 +198,31 @@ async logIn() {
  const {email,password} = this;
   if(this.selectedValue === 1){
     try{
+      console.log('1111111******');
       const res = await this.auth.signInWithEmailAndPassword(email,password);
+      console.log('22222******');
       if(res.user){
         this.afStore.collection('carOwners').doc(res.user.uid).valueChanges()
         .subscribe(singleDoc =>{
             this.phone = singleDoc['userPhone'];
             this.id = singleDoc['userId'];
+            if(res.user.uid ===this.id){
+              console.log('***********');
+        console.log(res.user.uid);
+        console.log(this.id);
+              this.user.setUser({
+                userEmail: res.user.email,
+                userId:res.user.uid,
+                userName:res.user.displayName,
+                userPhone:this.phone,
+                       });
+                       this.router.navigate(['/car-owner-dashboard']);
+            }else{
+              this.presentAlert();
+            }
         });
 
-        if(res.user.uid ===this.id){
-          this.user.setUser({
-            userEmail: res.user.email,
-            userId:res.user.uid,
-            userName:res.user.displayName,
-            userPhone:this.phone,
-                   });
-                   this.router.navigate(['/car-owner-dashboard']);
-        }else{
-          this.presentAlert();
-        }
+
 
       }
      }catch(e) {
@@ -231,7 +239,7 @@ async logIn() {
             this.phone = singleDoc['userPhone'];
             this.id = singleDoc['userId'];
         });
-        if(res.user.uid === this.id){
+       // if(res.user.uid === this.id){
           this.user.setUser({
             userEmail: res.user.email,
             userId:res.user.uid,
@@ -239,9 +247,9 @@ async logIn() {
             userPhone:this.phone,
                    });
                    this.router.navigate(['/garage-owner-dashboard']);
-        }else{
-          this.presentAlert();
-        }
+        // }else{
+        //   this.presentAlert();
+        // }
       }
      }catch(e) {
       console.dir(e);
@@ -258,7 +266,7 @@ async logIn() {
             this.phone = singleDoc['userPhone'];
             this.id = singleDoc['userId'];
         });
-        if(res.user.uid ===this.id){
+       // if(res.user.uid ===this.id){
           this.user.setUser({
             userEmail: res.user.email,
             userId:res.user.uid,
@@ -266,9 +274,9 @@ async logIn() {
             userPhone:this.phone,
                    });
                    this.router.navigate(['/argent-dashboard']);
-        }else{
-          this.presentAlert();
-        }
+        // }else{
+        //   this.presentAlert();
+        // }
                }
      }catch(e) {
       console.dir(e);

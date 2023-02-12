@@ -26,7 +26,7 @@
       <ion-list class="inputs-list" lines="full">
 
         <ion-item class="input-item">
-          <ion-input type="text" placeholder="Full Name" formControlName="name" clearInput  >
+          <ion-input type="text" placeholder="Full Name" formControlName="name" clearInput [(ngModel)]="name" >
             <ion-icon name="person"></ion-icon>&nbsp;&nbsp;
           </ion-input>
         </ion-item>
@@ -41,7 +41,7 @@
 
 
         <ion-item class="input-item">
-          <ion-input type="email" placeholder="Email" formControlName="email" clearInput autocapitalize="off" inputmode="email">
+          <ion-input type="email" placeholder="Email" formControlName="email" clearInput autocapitalize="off" inputmode="email" [(ngModel)]="email">
             <ion-icon name="mail"></ion-icon>&nbsp;&nbsp;
           </ion-input>
         </ion-item>
@@ -56,7 +56,7 @@
 
 
         <ion-item class="input-item">
-          <ion-input type="text" placeholder="Mobile" formControlName="phone"  clearInput inputmode="phone">
+          <ion-input type="text" placeholder="Mobile" formControlName="phone"  clearInput inputmode="phone" [(ngModel)]="phone">
             <ion-icon name="call"></ion-icon>&nbsp;&nbsp;
           </ion-input>
         </ion-item>
@@ -72,7 +72,7 @@
         <div formGroupName="matching_passwords">
         <ion-item class="input-item">
         <app-show-hide-password>
-          <ion-input type="password" placeholder="Password" formControlName="password" clearInput autocapitalize="off" inputmode="password">
+          <ion-input type="password" placeholder="Password" formControlName="password" clearInput autocapitalize="off" inputmode="password" [(ngModel)]="password">
             <ion-icon name="lock-closed"></ion-icon>&nbsp;&nbsp;
           </ion-input></app-show-hide-password>
         </ion-item>
@@ -88,7 +88,7 @@
 
         <ion-item class="input-item">
         <app-show-hide-password>
-          <ion-input type="password" placeholder="Confirm Password" formControlName="confirm_password" clearInput autocapitalize="off" inputmode="password">
+          <ion-input type="password" placeholder="Confirm Password" formControlName="confirm_password" clearInput autocapitalize="off" inputmode="password" [(ngModel)]="cPassword">
             <ion-icon name="lock-closed"></ion-icon>&nbsp;&nbsp;
           </ion-input></app-show-hide-password>
         </ion-item>
