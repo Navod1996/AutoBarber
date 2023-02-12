@@ -18,10 +18,10 @@
         </ion-row>
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card >
       <ion-col>
         <ion-row >
-          <ion-title class="my-label" style="color: black;" >User Name :</ion-title>
+          <ion-title class="my-label" style="color: black; size: small;" >User Name :</ion-title>
         </ion-row>
         <ion-row>
           <ion-title class="my-label" #000000>{{ name }}</ion-title>
@@ -54,8 +54,13 @@
 
 
     </ion-card>
-    <ion-button  class="login-btn" type="submit" expand="block"
-    style="text-transform:none;" (click)="logout()"  >Log out</ion-button>
+    <div class="logout-btn">
+      <ion-button  class="logout-btn" type="submit" 
+    style="text-transform:none;" (click)="logout()"  >
+    <ion-icon slot="start" name="log-out" style="color: white;" >
+    </ion-icon>Logout</ion-button>
+    </div>
+    
 
   </div>
 </div>
