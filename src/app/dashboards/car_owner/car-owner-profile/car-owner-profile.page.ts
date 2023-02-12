@@ -53,7 +53,7 @@ getDetails(){
    this.email = singleDoc['userEmail'];
    this.phone = singleDoc['userPhone'];
 });
-console.log(this.userDetails.getUID());
+
   };
 }
 

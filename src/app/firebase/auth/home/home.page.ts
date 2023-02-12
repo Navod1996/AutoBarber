@@ -126,7 +126,7 @@ ngOnInit() {
 }
 
 getDetails(){
-  this.afStore.collection('carOwners').doc('7EY4eK7Pi6XSdTeJq6uXuNt79Uv1').valueChanges()
+  this.afStore.collection('carOwners').doc().valueChanges()
 .subscribe(singleDoc =>{
    this.name = singleDoc['userName'];
    this.email = singleDoc['userEmail'];
@@ -198,18 +198,16 @@ async logIn() {
  const {email,password} = this;
   if(this.selectedValue === 1){
     try{
-      console.log('1111111******');
+
       const res = await this.auth.signInWithEmailAndPassword(email,password);
-      console.log('22222******');
+
       if(res.user){
         this.afStore.collection('carOwners').doc(res.user.uid).valueChanges()
         .subscribe(singleDoc =>{
             this.phone = singleDoc['userPhone'];
             this.id = singleDoc['userId'];
             if(res.user.uid ===this.id){
-              console.log('***********');
-        console.log(res.user.uid);
-        console.log(this.id);
+           
               this.user.setUser({
                 userEmail: res.user.email,
                 userId:res.user.uid,
