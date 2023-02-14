@@ -14,6 +14,7 @@ export class CarOwnerProfilePage implements OnInit {
   name: string;
   email: string;
   phone: string;
+  area: string;
 
   constructor(
     private afStore: AngularFirestore,
@@ -39,6 +40,7 @@ async logout(){
         userId: '',
         userName: '',
         userPhone: '',
+        userArea: '',
         });
 
     }
@@ -52,6 +54,7 @@ getDetails(){
    this.name = singleDoc['userName'];
    this.email = singleDoc['userEmail'];
    this.phone = singleDoc['userPhone'];
+   this.area = singleDoc['userArea'];
 });
 
   };

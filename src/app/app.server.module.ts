@@ -3,7 +3,7 @@ import { ServerModule, ServerTransferStateModule } from '@angular/platform-serve
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Tell Ionic components how to render on the server
-import { IonicServerModule } from '@ionic/angular-server';
+//import { IonicServerModule } from '@ionic/angular-server';
 
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,7 @@ import { UniversalInterceptor } from './utils/universal-interceptor';
     AppModule,
     ServerModule,
     ServerTransferStateModule,
-    IonicServerModule
+    //IonicServerModule
   ],
   providers: [
     {

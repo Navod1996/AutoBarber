@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../firebase-authentication-service'; 
 
 
 @Component({
@@ -30,6 +31,9 @@ export class ForgotPasswordPage implements OnInit {
     public auth: AngularFireAuth,
     public menu: MenuController,
     public alertController: AlertController,
+    private authService: AuthService,
+    private navCtrl: NavController,
+
   ) {
     this.forgotPasswordForm = new FormGroup({
       'email': new FormControl('', Validators.compose([
@@ -41,22 +45,33 @@ export class ForgotPasswordPage implements OnInit {
 
    async showAlert(header: string, message: string){
     const alert = await this.alertController.create({
-      header,
-      message,
-      buttons:["ok"]
+      header: 'Successfull',
+      message: 'Password reset link has been sent!',
+      buttons:[{
+        text:"ok",
+        handler: () => {
+          this.navCtrl.navigateRoot('/home');
+        }
+      }],
+      cssClass: 'msg-alert'
 
     });
     await alert.present();
   }
 
 
-async recoverPassword() {
-    console.log(this.forgotPasswordForm.value);
-    const res = await this.auth.sendPasswordResetEmail(this.email).then(()=>{
-        this.showAlert('Reset Password','Check your email');
-    });
+  resetPassword() {
+    this.authService.resetPassword(this.email)
+      .then(() => {
+      this.router.navigate(['/home']);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
-    this.router.navigate(['/home']);
+  cancel(){
+    this.navCtrl.navigateRoot('/home');
   }
 
   ngOnInit() {

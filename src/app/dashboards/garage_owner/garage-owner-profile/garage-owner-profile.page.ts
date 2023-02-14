@@ -35,6 +35,7 @@ export class GarageOwnerProfilePage implements OnInit {
           userId: '',
           userName: '',
           userPhone: '',
+          userArea: '',
           });
 
       }

@@ -75,7 +75,7 @@
 
 
   <ion-button  class="login-btn" type="submit" expand="block" [disabled]="!loginForm.valid"
-  style="text-transform:none;" (click)="logIn()"  >Login</ion-button>
+  style="text-transform:none; height: 30px;" (click)="logIn()"  >Login</ion-button>
   <div class="error-container" *ngIf="submitError">
     <div class="error-message">
       <ion-icon name="information-circle-outline"></ion-icon>
@@ -85,7 +85,7 @@
 
   <ion-row class="other-auth-options-row">
 
-<ion-button class="forgot-btn" fill="clear" [routerLink]="['/forgot-password']">
+<ion-button class="forgot-btn" fill="clear" [routerLink]="['/forgot-password']" style="height: 30px;">
   Forgot Password?</ion-button>
 </ion-row>
 

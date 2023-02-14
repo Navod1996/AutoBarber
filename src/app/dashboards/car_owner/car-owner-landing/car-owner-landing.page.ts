@@ -23,7 +23,7 @@ export class CarOwnerLandingPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.afStore.collection('carOwners').valueChanges().subscribe(goalList=>{
+    this.afStore.collection('garageOwners').valueChanges().subscribe(goalList=>{
       this.goalList = goalList;
       this.loadGoalList = goalList;
     });

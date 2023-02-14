@@ -54,6 +54,7 @@ ion-card{
 
 .inputs-list {
   --ion-item-background: var(--page-background);
+  margin-top: -20px;
 
   .input-item {
     --padding-start: 0px;
@@ -79,14 +80,14 @@ ion-card{
 
 
 .login-btn{
-  margin-top: 10px;
-  border-radius: 5px;
-  margin-left:15px;
-  margin-right:15px;
-  font-size:medium;
+  --color: white;
   font-family: 'Nunito', sans-serif;
-  text-align: center;
-  height: 30px;
+  font-size: small;
+  text-transform: none;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 10px;
  
 }
 
@@ -98,7 +99,12 @@ ion-card{
   --color: #428cff;
   font-family: 'Nunito', sans-serif;
   font-size: small;
-  margin-left: 30px;
+  text-transform: none;
+  position: relative;
+  justify-content: space-between;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 0px;
 
   &:focus {
     outline: none;
@@ -139,5 +145,8 @@ ion-icon {
   color: black;
 }
 
+ion-select:hover{
+  color: grey;
+      }
 
 

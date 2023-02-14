@@ -25,7 +25,7 @@ export class AsAGarageOwnerPage implements OnInit {
   redirectLoader: HTMLIonLoadingElement;
   name: string;
   email: string;
-
+area:string;
   phone: string;
   password: string;
   cPassword: string;
@@ -105,8 +105,8 @@ export class AsAGarageOwnerPage implements OnInit {
     const alert = await this.alertController.create({
       header,
       message,
-      buttons:["ok"]
-
+      buttons:["ok"],
+      cssClass: 'msg-alert'
     });
     await alert.present();
   }
@@ -123,7 +123,7 @@ export class AsAGarageOwnerPage implements OnInit {
     await alert.present();
   }
   async signUp(){
-    const {email,password,name,phone,cPassword} = this;
+    const {email,password,name,phone,cPassword,area} = this;
     try{
       const res = await this.auth.createUserWithEmailAndPassword(email,password);
       this.afStore.doc(`garageOwners/${res.user.uid}`).set({
@@ -131,12 +131,14 @@ export class AsAGarageOwnerPage implements OnInit {
         userName:name,
        userEmail: email,
         userPhone:phone,
+        userArea:area,
       });
       this.userDetails.setUser({
         userEmail: email,
         userId:res.user.uid,
         userName:name,
         userPhone:phone,
+        userArea:area,
         });
       this.router.navigate(['/garage-owner-dashboard']);
      }catch(e) {

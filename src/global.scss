@@ -21,4 +21,77 @@
 @import "theme/app-defaults.scss";
 
 
+ion-tab-bar {
+    --background: #428CFF;
+    padding-bottom: 0;
+    border: 1px solid rgba(2, 52, 54, 0.08);
+    overflow: hidden;
+    box-shadow: 0px -5px 10px rgb(3 181 170 / 8%);
+    height: 50px;
+   
+    ion-tab-button {
+       
+        --color: white;
+        ion-icon {
+            font-size: 1.9rem;
+            --ion-color: white;
+        }
+        
+    }
+
+    
+}
+
+ion-tab-button[aria-selected="true"] ion-icon,
+ion-tab-button:active ion-icon {
+  color: rgb(74, 73, 73);
+}
+
+ion-tab-button[aria-selected="true"] ion-label,
+ion-tab-button:active ion-label {
+  color: rgb(74, 73, 73);
+}
+
+ion-tab-button:hover ion-icon {
+    color: grey;
+  }
+  
+  ion-tab-button:hover ion-label {
+    color: grey;
+  }
+
+  .msg-alert {
+    --background: black;
+    --color: #428CFF;
+    --border-radius: 20px;
+    --padding: 20px;
+  }
+
+    .msg-alert .alert-header {
+        color: #428CFF;
+      }
+      
+      .msg-alert .alert-message {
+        color: #428CFF;
+      }
+  
+      .input-item {
+        --padding-start: 0px;
+        --padding-end: 0px;
+        --inner-padding-end: 0px;
+        color: black;
+        font-size: small;
+      }
+
+      ion-back-button{
+        --color:white;
+        font-size: small;
+       
+      
+      
+      }
+
+      ion-button{
+        text-transform: none;
+      }
 

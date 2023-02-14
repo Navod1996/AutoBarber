@@ -213,6 +213,7 @@ async logIn() {
                 userId:res.user.uid,
                 userName:res.user.displayName,
                 userPhone:this.phone,
+                userArea: '',
                        });
                        this.router.navigate(['/car-owner-dashboard']);
             }else{
@@ -243,6 +244,7 @@ async logIn() {
             userId:res.user.uid,
             userName:res.user.displayName,
             userPhone:this.phone,
+            userArea: '',
                    });
                    this.router.navigate(['/garage-owner-dashboard']);
         // }else{
@@ -270,6 +272,7 @@ async logIn() {
             userId:res.user.uid,
             userName:res.user.displayName,
             userPhone:this.phone,
+            userArea: '',
                    });
                    this.router.navigate(['/argent-dashboard']);
         // }else{

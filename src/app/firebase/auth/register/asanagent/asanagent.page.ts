@@ -24,7 +24,7 @@ export class AsanagentPage implements OnInit {
   phone: string;
   password: string;
   cPassword: string;
-
+area: string;
   validation_messages = {
 
     'name': [
@@ -116,7 +116,7 @@ export class AsanagentPage implements OnInit {
     await alert.present();
   }
   async signUp(){
-    const {email,password,name,phone,cPassword} = this;
+    const {email,password,name,phone,cPassword,area} = this;
     try{
       const res = await this.auth.createUserWithEmailAndPassword(email,password);
       this.afStore.doc(`agent/${res.user.uid}`).set({
@@ -124,12 +124,14 @@ export class AsanagentPage implements OnInit {
         userName:name,
        userEmail: email,
         userPhone:phone,
+        userArea:area,
       });
       this.userDetails.setUser({
         userEmail: email,
         userId:res.user.uid,
         userName:name,
         userPhone:phone,
+        userArea:area,
         });
       this.router.navigate(['/argent-dashboard']);
      }catch(e) {

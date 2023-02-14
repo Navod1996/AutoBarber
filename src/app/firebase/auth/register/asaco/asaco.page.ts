@@ -1,15 +1,15 @@
 import { Component, OnInit,  NgZone } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { MenuController, LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { UsernameValidator } from 'src/app/validators/username.validators';
 import { AngularFirestore, } from '@angular/fire/compat/firestore';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/compat/app';
-
-
 //import { AuthenticationService } from 'src/app/shared/authentication-service';
 import { UserService } from 'src/app/user_service';
 
@@ -26,7 +26,7 @@ export class AsacoPage implements OnInit {
   name: string;
   email: string;
   phone: string;
-  location: string;
+  area: string;
   password: string;
   cPassword: string;
 
@@ -48,6 +48,10 @@ export class AsacoPage implements OnInit {
       { type: 'minlength', message: 'Password must be at least 6 characters long.' },
       { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase and one number.' }
     ],
+    'area': [
+      { type: 'required', message: 'Area is required.' },
+    ],
+
     'confirm_password': [
       { type: 'required', message: 'Confirm password is required' }
     ],
@@ -61,7 +65,6 @@ export class AsacoPage implements OnInit {
     public router: Router,
    // public authService: AuthenticationService,
     public route: ActivatedRoute,
-    public menu: MenuController,
     public loadingController: LoadingController,
     public alertController: AlertController,
     public auth: AngularFireAuth,
@@ -92,6 +95,8 @@ export class AsacoPage implements OnInit {
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
+      'area': new FormControl('', Validators.required),
+
       'matching_passwords': this.matching_passwords_group
     });
 
@@ -100,27 +105,29 @@ export class AsacoPage implements OnInit {
   ngOnInit() {
   }
 
+  
   async showAlert(header: string, message: string){
     const alert = await this.alertController.create({
       header,
       message,
-      buttons:['ok']
+      buttons:['ok'],
+      cssClass: 'msg-alert'
 
     });
     await alert.present();
   }
 
-  async presentAlert(){
-    const alert = await this.alertController.create({
-      header : 'Some Error Occured',
-      message: 'Please Try Again',
-      buttons:['ok']
-
-    });
-    await alert.present();
-  }
+  
 async signUp(){
-  const {email,password,name,phone,cPassword} = this;
+  const {email,password,name,phone,cPassword,area} = this;
+
+  
+  const signInMethods = await this.auth.fetchSignInMethodsForEmail(email);
+  if (signInMethods.length > 0) {
+    this.showAlert('Error Occured', 'This email is already in use');
+    return;
+  }
+  
   try{
     const res = await this.auth.createUserWithEmailAndPassword(email,password);
     this.afStore.doc(`carOwners/${res.user.uid}`).set({
@@ -128,16 +135,20 @@ async signUp(){
       userName:name,
      userEmail: email,
       userPhone:phone,
+      userArea:'area',
     });
+    
+    
+
     this.userDetails.setUser({
       userEmail: email,
       userId:res.user.uid,
       userName:name,
       userPhone:phone,
+      userArea:'area',
       });
     this.router.navigate(['/car-owner-dashboard']);
    }catch(e) {
-    console.dir(e);
    this.showAlert('Error Occured',e.message);
    }
 
