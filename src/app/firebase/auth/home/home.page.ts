@@ -225,7 +225,6 @@ async logIn() {
 
       }
      }catch(e) {
-      console.dir(e);
      this.showAlert('Error Occured',e.message);
      }
 

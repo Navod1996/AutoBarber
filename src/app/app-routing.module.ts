@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
    {
@@ -44,11 +44,6 @@ const routes: Routes = [
     path: 'as-a-garage-owner',
     loadChildren: () => import('./firebase/auth/register/as-a-garage-owner/as-a-garage-owner.module').then( m => m.AsAGarageOwnerPageModule)
   }
-
-
-
-
-
 
 
 

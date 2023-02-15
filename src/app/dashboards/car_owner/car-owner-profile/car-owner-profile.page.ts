@@ -43,9 +43,12 @@ async logout(){
         userArea: '',
         });
 
+        return this.auth.setPersistence('none');
+
     }
   );
-  this.router.navigate(['/home']);
+  this.router.navigate(['/home'],{ replaceUrl: true });
+  return;
 }
 
 getDetails(){
@@ -54,7 +57,6 @@ getDetails(){
    this.name = singleDoc['userName'];
    this.email = singleDoc['userEmail'];
    this.phone = singleDoc['userPhone'];
-   this.area = singleDoc['userArea'];
 });
 
   };

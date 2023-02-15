@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PasswordValidator } from 'src/app/validators/password.validator';
 import { UsernameValidator } from 'src/app/validators/username.validators';
 import { AngularFirestore, } from '@angular/fire/compat/firestore';
-
+import { Platform } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { UserService } from 'src/app/user_service';
@@ -29,6 +29,8 @@ area:string;
   phone: string;
   password: string;
   cPassword: string;
+  data: any[]=[];
+  selectedValue:Number = 0;
 
 
   validation_messages = {
@@ -69,7 +71,13 @@ area:string;
     public afStore: AngularFirestore,
     public auth: AngularFireAuth,
     public userDetails: UserService,
+    private platform: Platform,
   ) {
+
+    this.platform.ready().then(() => {
+
+      this.data=[{id:1, name: 'Maharagama' },{id:2, name: 'Nugegoda'}, {id:3, name: 'Kottawa'}];
+  });
 
     this.matching_passwords_group = new FormGroup({
       'password': new FormControl('', Validators.compose([
@@ -111,7 +119,23 @@ area:string;
     await alert.present();
   }
 
+  
 
+  countryChange($event) {
+    console.log($event.target.value) ;
+
+    this.selectedValue = $event.target.value;
+    if(this.selectedValue == 1)
+    {console.log('Maharagama')};
+
+    if(this.selectedValue == 2)
+    {console.log('Nugegoda')};
+
+    if(this.selectedValue == 3)
+    {console.log('Kottawa')};
+      
+    
+  }
 
   async presentAlert(){
     const alert = await this.alertController.create({
