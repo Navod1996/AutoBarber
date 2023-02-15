@@ -7,4 +7,31 @@ ion-tab-bar{
     animation: bounce 0.5s;
 }
   
+ion-content{
+    --ion-background-color: white;
+  }
+  
+  ion-toolbar {
+    --color: #ffffff;
+   --background: #428CFF;
+   --size: small;
+    height: 45px;
+    
+}
+
+ion-title{
+    font-size: medium;
+    text-align: center;
+    margin-top: 5px;
+}
+
+
+ion-list {
+  background-color: transparent;
+}
+
+ion-card{
+  --background: white;
+  
+}
   

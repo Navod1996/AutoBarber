@@ -35,7 +35,6 @@ export class ArgentProfilePage implements OnInit {
           userId: '',
           userName: '',
           userPhone: '',
-          userArea: '',
           });
 
       }

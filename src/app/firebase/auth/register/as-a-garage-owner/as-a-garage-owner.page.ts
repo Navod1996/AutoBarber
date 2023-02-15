@@ -74,10 +74,6 @@ area:string;
     private platform: Platform,
   ) {
 
-    this.platform.ready().then(() => {
-
-      this.data=[{id:1, name: 'Maharagama' },{id:2, name: 'Nugegoda'}, {id:3, name: 'Kottawa'}];
-  });
 
     this.matching_passwords_group = new FormGroup({
       'password': new FormControl('', Validators.compose([
@@ -147,7 +143,7 @@ area:string;
     await alert.present();
   }
   async signUp(){
-    const {email,password,name,phone,cPassword,area} = this;
+    const {email,password,name,phone,cPassword,} = this;
     try{
       const res = await this.auth.createUserWithEmailAndPassword(email,password);
       this.afStore.doc(`garageOwners/${res.user.uid}`).set({
@@ -155,14 +151,12 @@ area:string;
         userName:name,
        userEmail: email,
         userPhone:phone,
-        userArea:area,
       });
       this.userDetails.setUser({
         userEmail: email,
         userId:res.user.uid,
         userName:name,
         userPhone:phone,
-        userArea:area,
         });
       this.router.navigate(['/garage-owner-dashboard']);
      }catch(e) {

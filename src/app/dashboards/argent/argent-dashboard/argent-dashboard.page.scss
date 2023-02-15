@@ -10,3 +10,25 @@ ion-tab-bar{
 ion-icon{
     color: black;
 }
+
+ion-content{
+    --ion-background-color: white;
+  }
+  
+
+
+ion-title{
+    font-size: medium;
+    text-align: center;
+    margin-top: 5px;
+}
+
+
+ion-list {
+  background-color: transparent;
+}
+
+ion-card{
+  --background: white;
+  
+}

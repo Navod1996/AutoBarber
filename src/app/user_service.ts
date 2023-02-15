@@ -5,7 +5,6 @@ interface UserDetails{
   userName: string;
   userEmail: string;
   userPhone: string;
-  userArea: string;
 }
 @Injectable()
 export class UserService{

@@ -26,7 +26,6 @@ export class AsacoPage implements OnInit {
   name: string;
   email: string;
   phone: string;
-  area: string;
   password: string;
   cPassword: string;
 
@@ -119,7 +118,7 @@ export class AsacoPage implements OnInit {
 
   
 async signUp(){
-  const {email,password,name,phone,cPassword,area} = this;
+  const {email,password,name,phone,cPassword,} = this;
 
   
   const signInMethods = await this.auth.fetchSignInMethodsForEmail(email);
@@ -135,7 +134,6 @@ async signUp(){
       userName:name,
      userEmail: email,
       userPhone:phone,
-      userArea:'area',
     });
     
     
@@ -145,7 +143,6 @@ async signUp(){
       userId:res.user.uid,
       userName:name,
       userPhone:phone,
-      userArea:'area',
       });
       this.router.navigate(['/car-owner-dashboard']);
    }catch(e) {
