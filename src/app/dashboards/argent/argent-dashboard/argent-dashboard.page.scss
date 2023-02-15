@@ -1,34 +1,38 @@
-ion-tab-bar{
-    --color: #ffffff;
-    --background: #428CFF;
-}
-
-.tab-button-active {
-    animation: bounce 0.5s;
-}
-
-ion-icon{
-    color: black;
-}
-
-ion-content{
-    --ion-background-color: white;
+ion-tab-bar {
+  --background: #428CFF;
+  padding-bottom: 0;
+  border: 1px solid rgba(2, 52, 54, 0.08);
+  overflow: hidden;
+  box-shadow: 0px -5px 10px rgb(3 181 170 / 8%);
+  height: 50px;
+ 
+  ion-tab-button {
+     
+      --color: white;
+      ion-icon {
+          font-size: 1.9rem;
+          --ion-color: white;
+      }
+      
   }
+
   
-
-
-ion-title{
-    font-size: medium;
-    text-align: center;
-    margin-top: 5px;
 }
 
-
-ion-list {
-  background-color: transparent;
+ion-tab-button[aria-selected="true"] ion-icon,
+ion-tab-button:active ion-icon {
+color: rgb(74, 73, 73);
 }
 
-ion-card{
-  --background: white;
-  
+ion-tab-button[aria-selected="true"] ion-label,
+ion-tab-button:active ion-label {
+color: rgb(74, 73, 73);
+}
+
+ion-tab-button:hover ion-icon {
+  color: grey;
+}
+
+ion-tab-button:hover ion-label {
+  color: grey;
 }
