@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { GarageOwnerRatingPageRoutingModule } from './garage-owner-rating-routing.module';
-
+import { ComponentsModule } from 'src/app/components/components.module';
 import { GarageOwnerRatingPage } from './garage-owner-rating.page';
 
 @NgModule({
@@ -13,6 +13,8 @@ import { GarageOwnerRatingPage } from './garage-owner-rating.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
+    ComponentsModule,
     GarageOwnerRatingPageRoutingModule
   ],
   declarations: [GarageOwnerRatingPage]

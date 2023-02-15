@@ -51,10 +51,7 @@ export class CarOwnerLandingPage implements OnInit {
           return true;
         }
         return false;
-        console.log('hello');
-        console.log('test broq  ');
-
-      }
+        }
 
   });
   }

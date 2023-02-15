@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, } from '@angular/fire/compat/firestore';
 import { UserService } from 'src/app/user_service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
