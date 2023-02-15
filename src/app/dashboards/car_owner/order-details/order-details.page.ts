@@ -10,11 +10,13 @@ import { MenuController, LoadingController, AlertController,NavController } from
 })
 export class OrderDetailsPage implements OnInit {
 
-       garadeId: any;
+  garadeUserid: any;
+  garadeServiceid: any;
       garadedescription: any;
       garadeimageurl:any;
       garadeTitle:any;
        agentId: any;
+       agentServiceId: any;
        agentdescription: any;
        agentimageurl:any;
        agentTitle:any;
@@ -25,11 +27,13 @@ export class OrderDetailsPage implements OnInit {
        status:any;
 
   constructor( public route: ActivatedRoute,public navCtrl: NavController,) {
-    this.garadeId =this.route.snapshot.params['garadeId'];
+    this.garadeUserid =this.route.snapshot.params['garadeUserid'];
+    this.garadeServiceid =this.route.snapshot.params['garadeServiceid'];
     this.garadedescription =this.route.snapshot.params['garadedescription'];
     this.garadeimageurl =this.route.snapshot.params['garadeimageurl'];
     this.garadeTitle =this.route.snapshot.params['garadeTitle'];
     this.agentId =this.route.snapshot.params['agentId'];
+    this.agentServiceId =this.route.snapshot.params['agentServiceId'];
     this.agentdescription =this.route.snapshot.params['agentdescription'];
     this.agentimageurl =this.route.snapshot.params['agentimageurl'];
     this.agentTitle =this.route.snapshot.params['agentTitle'];

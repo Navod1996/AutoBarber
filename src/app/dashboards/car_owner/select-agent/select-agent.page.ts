@@ -13,7 +13,8 @@ import { NavController,  } from '@ionic/angular';
 export class SelectAgentPage implements OnInit {
   public goalList: any[];
   public loadGoalList: any[];
-  garadeid: any;
+  garadeServiceid: any;
+  garadeUserid: any;
   garadetitle: any;
   garadedescription: any;
   garadeimageUrl: any;
@@ -28,7 +29,8 @@ export class SelectAgentPage implements OnInit {
     public route: ActivatedRoute,
     public router: Router,
     public navCtrl: NavController,) {
-      this.garadeid =this.route.snapshot.params['garadeid'];
+      this.garadeServiceid =this.route.snapshot.params['garadeServiceid'];
+      this.garadeUserid =this.route.snapshot.params['garadeUserid'];
     this.garadetitle =this.route.snapshot.params['garadetitle'];
     this.garadedescription =this.route.snapshot.params['garadeimageUrl'];
     this.garadeimageUrl =this.route.snapshot.params['garadedescription'];
@@ -84,13 +86,16 @@ export class SelectAgentPage implements OnInit {
     var title = item.title;
     var imageUrl = item.imageUrl;
     var description = item.description;
-    var id = item.id;
+    var agentid = item.agentId;
+    var agentserviceid = item.agentServiceid;
     this.navCtrl.navigateForward(['agent-details',{
       agentdescription:description,
       agenttitle: title,
-      agentid:id,
+      agentid:agentid,
+      agentServiceid:agentserviceid,
       agentimageUrl:imageUrl,
-      garadeid: this.garadeid,
+      garadeUserid: this.garadeUserid,
+      garadeServiceid: this.garadeServiceid,
       garadetitle:this.garadetitle,
       garadeimageurl:this.garadeimageUrl,
       garadedescription:this.garadedescription,
