@@ -11,7 +11,8 @@ import { UserService } from 'src/app/user_service';
   styleUrls: ['./agent-details.page.scss'],
 })
 export class AgentDetailsPage implements OnInit {
-  garadeid: any;
+  garadeUserid: any;
+  garadeServiceid: any;
   garadetitle: any;
   garadedescription: any;
   garadeimageUrl: any;
@@ -21,6 +22,7 @@ export class AgentDetailsPage implements OnInit {
   agentdescription: any;
   agenttitle: any;
   agentid: any;
+  agentServiceid: any;
   agentimageurl: any;
   constructor(
     public navCtrl: NavController,
@@ -30,23 +32,17 @@ export class AgentDetailsPage implements OnInit {
     public router: Router,
     public userDetails: UserService,
   ) {
-    this.garadeid =this.route.snapshot.params['garadeid'];
+    this.garadeUserid =this.route.snapshot.params['garadeUserid'];
+    this.garadeServiceid =this.route.snapshot.params['garadeServiceid'];
     this.garadetitle =this.route.snapshot.params['garadetitle'];
     this.garadedescription =this.route.snapshot.params['garadeimageurl'];
     this.garadeimageUrl =this.route.snapshot.params['garadedescription'];
     this.agentdescription =this.route.snapshot.params['agentdescription'];
     this.agenttitle =this.route.snapshot.params['agenttitle'];
     this.agentid =this.route.snapshot.params['agentid'];
+    this.agentServiceid =this.route.snapshot.params['agentServiceid'];
     this.agentimageurl =this.route.snapshot.params['agentimageUrl'];
 
-    console.log(this.garadeid);
-    console.log(this.garadetitle);
-    console.log(this.garadedescription);
-    console.log(this.garadeimageUrl);
-    console.log(this.agentdescription);
-    console.log(this.agenttitle);
-    console.log(this.agentid);
-    console.log(this.agentimageurl);
   }
 
   ngOnInit() {
@@ -59,14 +55,16 @@ export class AgentDetailsPage implements OnInit {
 
       this.afStore.doc(`orders/${time}`).set({
        orderId:time,
-       garadeId: this.garadeid,
+       garadeUserid: this.garadeUserid,
+       garadeServiceid: this.garadeServiceid,
       garadedescription: this.garadedescription,
       garadeimageurl:this.garadeimageUrl,
       garadeTitle:this.garadetitle,
-       agentId: this.garadeid,
-       agentdescription: this.garadedescription,
-       agentimageurl:this.garadeimageUrl,
-       agentTitle:this.garadetitle,
+       agentId: this.agentid,
+       agentServiceid:this.agentServiceid,
+       agentdescription: this.agentdescription,
+       agentimageurl:this.agentimageurl,
+       agentTitle:this.agenttitle,
        userName: this.userName,
        userEmail: this.userEmail,
        userId:this.userDetails.getUID(),

@@ -24,7 +24,7 @@ export class GarageOwnerLandingPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.afStore.collection('orders',ref => ref.where('garadeId', '==', this.userDetails.getUID())).valueChanges().subscribe(goalList=>{
+    this.afStore.collection('orders',ref => ref.where('garadeUserid', '==', this.userDetails.getUID())).valueChanges().subscribe(goalList=>{
       this.goalList = goalList;
       this.loadGoalList = goalList;
     });

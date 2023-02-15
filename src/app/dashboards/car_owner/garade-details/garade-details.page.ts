@@ -8,7 +8,8 @@ import {  ActivatedRoute } from '@angular/router';
   styleUrls: ['./garade-details.page.scss'],
 })
 export class GaradeDetailsPage implements OnInit {
-  id: any;
+  garadeUserid: any;
+  garadeServiceid: any;
   title: any;
   description: any;
   imageUrl: any;
@@ -19,15 +20,13 @@ export class GaradeDetailsPage implements OnInit {
     public navCtrl: NavController,
     public route: ActivatedRoute,
   ) {
-    this.id =this.route.snapshot.params['id'];
+    this.garadeUserid =this.route.snapshot.params['garadeuserId'];
+    this.garadeServiceid =this.route.snapshot.params['garadeServiceid'];
     this.title =this.route.snapshot.params['title'];
     this.imageUrl =this.route.snapshot.params['imageUrl'];
     this.description =this.route.snapshot.params['description'];
 
-    console.log(this.id);
-    console.log(this.title);
-    console.log(this.imageUrl);
-    console.log(this.description);
+
   }
 
   ngOnInit() {
@@ -37,7 +36,8 @@ export class GaradeDetailsPage implements OnInit {
     this.navCtrl.navigateForward(['select-agent',{
       garadedescription:this.description,
       garadetitle:this.title,
-      garadeid:this.id,
+      garadeUserid:this.garadeUserid,
+      garadeServiceid:this.garadeServiceid,
       garadeimageUrl:this.imageUrl,
 
 

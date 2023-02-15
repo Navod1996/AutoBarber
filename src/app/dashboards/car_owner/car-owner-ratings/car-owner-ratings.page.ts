@@ -60,11 +60,13 @@ export class CarOwnerRatingsPage implements OnInit {
 
     this.navCtrl.navigateForward(['order-details',{
       orderId:item.orderId,
-       garadeId: item.garadeId,
+      garadeUserid: item.garadeUserid,
+      garadeServiceid: item.garadeServiceid,
       garadedescription: item.garadedescription,
       garadeimageurl:item.garadeimageurl,
       garadeTitle:item.garadeTitle,
-       agentId: item.agentId,
+      agentid: item.agentId,
+      agentServiceId:item.agentServiceid,
        agentdescription: item.agentdescription,
        agentimageurl:item.agentimageurl,
        agentTitle:item.agentTitle,

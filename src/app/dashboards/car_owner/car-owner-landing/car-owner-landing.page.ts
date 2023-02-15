@@ -78,12 +78,14 @@ export class CarOwnerLandingPage implements OnInit {
     var title = item.title;
     var imageUrl = item.imageUrl;
     var description = item.description;
-    var id = item.id;
+    var garadeServiceid = item.garadeServiceid;
+    var garadeuserId = item.garadeuserId;
     this.navCtrl.navigateForward(['garade-details',{
       description:description,
       title: title,
-      id:id,
+      garadeServiceid:garadeServiceid,
       imageUrl:imageUrl,
+      garadeuserId:garadeuserId,
 
 
     }]);
