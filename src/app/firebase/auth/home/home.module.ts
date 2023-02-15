@@ -11,23 +11,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { map } from 'rxjs/operators';
 
-const redirectLoggedInToProfile = (next) => map(user => {
-  // when queryParams['auth-redirect'] don't redirect because we want
-  // the component to handle the redirection
-  if (user !== null && !next.queryParams['auth-redirect']) {
-    return ['firebase/auth/profile'];
-  } else {
-    return true;
-  }
-});
 
-const routes: Routes = [
-  {
-    path: '',
-    component: HomePage,
-    data: { authGuardPipe: redirectLoggedInToProfile }
-  }
-];
 
 
 
@@ -37,7 +21,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
+    RouterModule,
     ComponentsModule,
     HomePageRoutingModule
   ],

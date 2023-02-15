@@ -8,9 +8,16 @@
   <ion-searchbar showCancelButton (ionInput)="filterList($event)"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of goalList">
-      <ion-label>{{ item.userName }}</ion-label>
-      <ion-label>{{ item.userEmail }}</ion-label>
-      <ion-label>{{ item.userPhone }}</ion-label>
+      <ion-label>{{ item.title }}</ion-label>
+
+      <ion-thumbnail slot="start" *ngIf="item.imageUrl">
+        <img [src]="item.imageUrl" alt="">
+      </ion-thumbnail>
+      <ion-button slot="end" fill="clear" color="danger" (click)="remove(item)">
+        <ion-icon slot="icon-only" name="arrow-forward-circle-outline"></ion-icon>
+      </ion-button>
+
     </ion-item>
   </ion-list>
+
 </ion-content>

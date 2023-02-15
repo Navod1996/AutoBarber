@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Order Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<div id="Garade Details" >
+  <div class="garade_details" >
+    <ion-card>
+      <ion-col>
+        <ion-row >
+          <ion-title class="my-label" style="color: black;" >Garade Details</ion-title>
+        </ion-row>
+
+      </ion-col>
+
+
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-4></ion-col>
+          <ion-col col-4>
+            <img [src]="garadeimageurl" alt="">
+          </ion-col>
+          <ion-col col-4></ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-col>
+        <ion-row >
+          <ion-title class="my-label" style="color: black;" >Title :</ion-title>
+        </ion-row>
+        <ion-row>
+          <ion-title class="my-label" #000000>{{ garadeTitle }}</ion-title>
+        </ion-row>
+      </ion-col>
+
+
+    </ion-card>
+    <ion-card>
+      <ion-col>
+        <ion-row >
+          <ion-title class="my-label" style="color: black;" >Description :</ion-title>
+        </ion-row>
+        <ion-row>
+          <ion-title class="my-label" #000000>{{ garadedescription }}</ion-title>
+        </ion-row>
+      </ion-col>
+<!-- ********************************************************************* -->
+
+    </ion-card >
+    <ion-card style="color: green">
+      <ion-col>
+        <ion-row >
+          <ion-title class="my-label" style="color: black;" >Customer Details</ion-title>
+        </ion-row>
+
+      </ion-col>
+
+
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-4></ion-col>
+          <ion-col col-4>
+            <img [src]="agentimageurl" alt="">
+          </ion-col>
+          <ion-col col-4></ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-col>
+        <ion-row >
+          <ion-title class="my-label" style="color: black;" >Customer Name :</ion-title>
+        </ion-row>
+        <ion-row>
+          <ion-title class="my-label" #000000>{{ userName }}</ion-title>
+        </ion-row>
+      </ion-col>
+
+
+    </ion-card>
+    <ion-card>
+      <ion-col>
+        <ion-row >
+          <ion-title class="my-label" style="color: black;" >Customer Phone :</ion-title>
+        </ion-row>
+        <ion-row>
+          <ion-title class="my-label" #000000>{{ userPhone }}</ion-title>
+        </ion-row>
+      </ion-col>
+
+
+    </ion-card>
+    <ion-card>
+      <ion-col>
+        <ion-row >
+          <ion-title class="my-label" style="color: black;" >Customer Email :</ion-title>
+        </ion-row>
+        <ion-row>
+          <ion-title class="my-label" #000000>{{ userEmail }}</ion-title>
+        </ion-row>
+      </ion-col>
+
+
+    </ion-card>
+
+    <ion-button  class="login-btn" type="submit" expand="block"
+    style="text-transform:none;" (click)="placeOrder()"  >View Order Status</ion-button>
+
+  </div>
+</div>
+</ion-content>

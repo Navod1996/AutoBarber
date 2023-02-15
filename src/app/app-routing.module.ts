@@ -31,7 +31,7 @@ const routes: Routes = [
     path: 'argent-dashboard',
     loadChildren: () => import('./dashboards/argent/argent-dashboard/argent-dashboard.module').then( m => m.ArgentDashboardPageModule)
   },
- 
+
   {
     path: 'car-owner-dashboard',
     loadChildren: () => import('./dashboards/car_owner/car-owner-dashboard/car-owner-dashboard.module').then( m => m.CarOwnerDashboardPageModule)
@@ -43,7 +43,37 @@ const routes: Routes = [
   {
     path: 'as-a-garage-owner',
     loadChildren: () => import('./firebase/auth/register/as-a-garage-owner/as-a-garage-owner.module').then( m => m.AsAGarageOwnerPageModule)
-  }
+
+  },
+  {
+    path: 'garade-details',
+    loadChildren: () => import('./dashboards/car_owner/garade-details/garade-details.module').then( m => m.GaradeDetailsPageModule)
+  },
+  {
+    path: 'select-agent',
+    loadChildren: () => import('./dashboards/car_owner/select-agent/select-agent.module').then( m => m.SelectAgentPageModule)
+  },
+  {
+    path: 'agent-details',
+    loadChildren: () => import('./dashboards/car_owner/agent-details/agent-details.module').then( m => m.AgentDetailsPageModule)
+  },
+  {
+    path: 'order-details',
+    loadChildren: () => import('./dashboards/car_owner/order-details/order-details.module').then( m => m.OrderDetailsPageModule)
+  },
+  
+
+  {
+    path: 'argent-order-details',
+    loadChildren: () => import('./dashboards/argent/argent-order-details/argent-order-details.module').then( m => m.ArgentOrderDetailsPageModule)
+  },
+  {
+    path: 'garade-order-details',
+    loadChildren: () => import('./dashboards/garage_owner/garade-order-details/garade-order-details.module').then( m => m.GaradeOrderDetailsPageModule)
+  },
+
+
+
 
 
 
