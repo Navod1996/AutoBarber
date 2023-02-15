@@ -24,8 +24,8 @@ import { log } from 'console';
 export class HomePage implements OnInit  {
   loginForm: FormGroup;
   submitError: string;
-  redirectLoader: HTMLIonLoadingElement;
-  authRedirectResult: Subscription;
+
+ 
   data: any[]=[];
   selectedValue:Number = 0;
   id: string;
@@ -72,13 +72,13 @@ export class HomePage implements OnInit  {
 
 
 
-    // Check if url contains our custom 'auth-redirect' param, then show a loader while we receive the getRedirectResult notification
-    this.route.queryParams.subscribe(params => {
-      const authProvider = params['auth-redirect'];
-      if (authProvider) {
-        this.presentLoading(authProvider);
-      }
-    });
+    // // Check if url contains our custom 'auth-redirect' param, then show a loader while we receive the getRedirectResult notification
+    // this.route.queryParams.subscribe(params => {
+    //   const authProvider = params['auth-redirect'];
+    //   if (authProvider) {
+    //     this.presentLoading(authProvider);
+    //   }
+    // });
 
     this.platform.ready().then(() => {
 
@@ -122,81 +122,73 @@ export class HomePage implements OnInit  {
   }
 
 ngOnInit() {
-  this.getDetails();
+
 }
 
-getDetails(){
-  this.afStore.collection('carOwners').doc().valueChanges()
-.subscribe(singleDoc =>{
-   this.name = singleDoc['userName'];
-   this.email = singleDoc['userEmail'];
-   this.phone = singleDoc['userPhone'];
-   console.log(this.email);
-});
 
-  };
 
 // Once the auth provider finished the authentication flow, and the auth redirect completes,
 // hide the loader and redirect the user to the profile page
-redirectLoggedUserToProfilePage() {
-  this.dismissLoading();
-  // As we are calling the Angular router navigation inside a subscribe method, the navigation will be triggered outside Angular zone.
-  // That's why we need to wrap the router navigation call inside an ngZone wrapper
-  this.ngZone.run(() => {
-    // Get previous URL from our custom History Helper
-    // If there's no previous page, then redirect to profile
-    // const previousUrl = this.historyHelper.previousUrl || 'firebase/auth/profile';
-    const previousUrl = 'firebase/auth/profile';
+// redirectLoggedUserToProfilePage() {
+//   this.dismissLoading();
+//   // As we are calling the Angular router navigation inside a subscribe method, the navigation will be triggered outside Angular zone.
+//   // That's why we need to wrap the router navigation call inside an ngZone wrapper
+//   this.ngZone.run(() => {
+//     // Get previous URL from our custom History Helper
+//     // If there's no previous page, then redirect to profile
+//     // const previousUrl = this.historyHelper.previousUrl || 'firebase/auth/profile';
+//     const previousUrl = 'firebase/auth/profile';
 
-    // No need to store in the navigation history the sign-in page with redirect params (it's justa a mandatory mid-step)
-    // Navigate to profile and replace current url with profile
-    this.router.navigate([previousUrl], { replaceUrl: true });
-  });
-}
+//     // No need to store in the navigation history the sign-in page with redirect params (it's justa a mandatory mid-step)
+//     // Navigate to profile and replace current url with profile
+//     this.router.navigate([previousUrl], { replaceUrl: true });
+//   });
+// }
 
-async presentLoading(authProvider?: string) {
-  const authProviderCapitalized = authProvider[0].toUpperCase() + authProvider.slice(1);
+// async presentLoading(authProvider?: string) {
+//   const authProviderCapitalized = authProvider[0].toUpperCase() + authProvider.slice(1);
 
-  this.loadingController.create({
-    message: authProvider ? 'Signing in with ' + authProviderCapitalized : 'Signin in ...',
-    duration: 4000
-  }).then((loader) => {
-    const currentUrl = this.location.path();
-    if (currentUrl.includes('auth-redirect')) {
-      this.redirectLoader = loader;
-      this.redirectLoader.present();
-    }
-  });
-}
+//   this.loadingController.create({
+//     message: authProvider ? 'Signing in with ' + authProviderCapitalized : 'Signin in ...',
+//     duration: 4000
+//   }).then((loader) => {
+//     const currentUrl = this.location.path();
+//     if (currentUrl.includes('auth-redirect')) {
+//       this.redirectLoader = loader;
+//       this.redirectLoader.present();
+//     }
+//   });
+// }
 
-async dismissLoading() {
-  if (this.redirectLoader) {
-    await this.redirectLoader.dismiss();
-  }
-}
+// async dismissLoading() {
+//   if (this.redirectLoader) {
+//     await this.redirectLoader.dismiss();
+//   }
+// }
 
 // Before invoking auth provider redirect flow, present a loading indicator and add a flag to the path.
-// The precense of the flag in the path indicates we should wait for the auth redirect to complete.
-prepareForAuthWithProvidersRedirection(authProvider: string) {
-  this.presentLoading(authProvider);
+// // The precense of the flag in the path indicates we should wait for the auth redirect to complete.
+// prepareForAuthWithProvidersRedirection(authProvider: string) {
+//   this.presentLoading(authProvider);
 
-  this.location.replaceState(this.location.path(), 'auth-redirect=' + authProvider, this.location.getState());
-}
+//   this.location.replaceState(this.location.path(), 'auth-redirect=' + authProvider, this.location.getState());
+// }
 
-manageAuthWithProvidersErrors(errorMessage: string) {
-  this.submitError = errorMessage;
-  // remove auth-redirect param from url
-  this.location.replaceState(this.router.url.split('?')[0], '');
-  this.dismissLoading();
-}
+// manageAuthWithProvidersErrors(errorMessage: string) {
+//   this.submitError = errorMessage;
+//   // remove auth-redirect param from url
+//   this.location.replaceState(this.router.url.split('?')[0], '');
+//   this.dismissLoading();
+// }
 
-resetSubmitError() {
-  this.submitError = null;
-}
+// resetSubmitError() {
+//   this.submitError = null;
+// }
 
 async logIn() {
  const {email,password} = this;
   if(this.selectedValue === 1){
+    console.log('car owner');
     try{
 
       const res = await this.auth.signInWithEmailAndPassword(email,password);
@@ -206,8 +198,8 @@ async logIn() {
         .subscribe(singleDoc =>{
             this.phone = singleDoc['userPhone'];
             this.id = singleDoc['userId'];
-            if(res.user.uid ===this.id){
-           
+           // if(res.user.uid ===this.id){
+
               this.user.setUser({
                 userEmail: res.user.email,
                 userId:res.user.uid,
@@ -215,9 +207,9 @@ async logIn() {
                 userPhone:this.phone,
                        });
                        this.router.navigate(['/car-owner-dashboard']);
-            }else{
-              this.presentAlert();
-            }
+            // }else{
+            //   this.presentAlert();
+            // }
         });
 
 

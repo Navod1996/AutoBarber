@@ -135,7 +135,7 @@ async signUp(){
       userName:name,
       userPhone:phone,
       });
-    this.router.navigate(['/car-owner-dashboard']);
+      this.router.navigate(['/car-owner-dashboard']);
    }catch(e) {
     console.dir(e);
    this.showAlert('Error Occured',e.message);

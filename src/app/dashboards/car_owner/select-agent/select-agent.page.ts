@@ -3,33 +3,39 @@ import { AngularFirestore, } from '@angular/fire/compat/firestore';
 import { UserService } from 'src/app/user_service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavController,  } from '@ionic/angular';
-@Component({
-  selector: 'app-car-owner-landing',
-  templateUrl: './car-owner-landing.page.html',
-  styleUrls: ['./car-owner-landing.page.scss'],
 
+
+@Component({
+  selector: 'app-select-agent',
+  templateUrl: './select-agent.page.html',
+  styleUrls: ['./select-agent.page.scss'],
 })
-export class CarOwnerLandingPage implements OnInit {
+export class SelectAgentPage implements OnInit {
   public goalList: any[];
   public loadGoalList: any[];
+  garadeid: any;
+  garadetitle: any;
+  garadedescription: any;
+  garadeimageUrl: any;
 
   details: any;
   name: string;
   email: string;
   phone: string;
 
-
-  constructor(
-    private afStore: AngularFirestore,
+  constructor(  private afStore: AngularFirestore,
     public userDetails: UserService,
     public route: ActivatedRoute,
     public router: Router,
-    public navCtrl: NavController,
-  ) { }
+    public navCtrl: NavController,) {
+      this.garadeid =this.route.snapshot.params['garadeid'];
+    this.garadetitle =this.route.snapshot.params['garadetitle'];
+    this.garadedescription =this.route.snapshot.params['garadeimageUrl'];
+    this.garadeimageUrl =this.route.snapshot.params['garadedescription'];
+     }
 
   ngOnInit() {
-   // this.getDetails();
-    this.afStore.collection('garadeServices').valueChanges().subscribe(goalList=>{
+    this.afStore.collection('agentServices').valueChanges().subscribe(goalList=>{
       this.goalList = goalList;
       this.loadGoalList = goalList;
     });
@@ -79,13 +85,17 @@ export class CarOwnerLandingPage implements OnInit {
     var imageUrl = item.imageUrl;
     var description = item.description;
     var id = item.id;
-    this.navCtrl.navigateForward(['garade-details',{
-      description:description,
-      title: title,
-      id:id,
-      imageUrl:imageUrl,
-
+    this.navCtrl.navigateForward(['agent-details',{
+      agentdescription:description,
+      agenttitle: title,
+      agentid:id,
+      agentimageUrl:imageUrl,
+      garadeid: this.garadeid,
+      garadetitle:this.garadetitle,
+      garadeimageurl:this.garadeimageUrl,
+      garadedescription:this.garadedescription,
 
     }]);
   }
+
 }

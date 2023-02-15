@@ -5,7 +5,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { MenuController, LoadingController, AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-
+import { UserService } from 'src/app/user_service';
 
 @Component({
   selector: 'app-argent-ratings',
@@ -30,12 +30,12 @@ export class ArgentRatingsPage implements OnInit {
      private loadingController: LoadingController,
      public route: ActivatedRoute,
      public menu: MenuController,
-
+     public userDetails: UserService,
      public alertController: AlertController,
 
      ) {
       this.itemsRef = afStore.collection('agentServices');
-    this.items = this.itemsRef.valueChanges();
+    this.items = afStore.collection('agentServices' ,ref => ref.where('agentId', '==', this.userDetails.getUID())).valueChanges();
       this.signupForm = new FormGroup({
 
         'title': new FormControl('', Validators.required),
@@ -56,7 +56,7 @@ export class ArgentRatingsPage implements OnInit {
   }
 
   chooseFile(event) {
-    this.selectedFile = event.target.files
+    this.selectedFile = event.target.files;
   }
 
   validation_messages = {
@@ -72,13 +72,15 @@ export class ArgentRatingsPage implements OnInit {
     this.itemsRef.add({
       title: this.title,
       description:this.description,
+      agentId:this.userDetails.getUID(),
     })
     .then(async resp => {
       await this.presentLoading();
       const imageUrl = await this.uploadFile(resp.id, this.selectedFile);
 
       this.itemsRef.doc(resp.id).update({
-        id: resp.id,
+        agentServiceid: resp.id,
+
         imageUrl: imageUrl || null
       });
     }).catch(error => {
@@ -99,7 +101,7 @@ export class ArgentRatingsPage implements OnInit {
     if(file && file.length) {
       try {
 
-        const task = await this.afStorage.ref('images').child(id).put(file[0])
+        const task = await this.afStorage.ref('images').child(id).put(file[0]);
         this.loading.dismiss();
         return this.afStorage.ref(`images/${id}`).getDownloadURL().toPromise();
       } catch (error) {
@@ -110,9 +112,9 @@ export class ArgentRatingsPage implements OnInit {
   remove(item){
     console.log(item);
     if(item.imageUrl) {
-      this.afStorage.ref(`images/${item.id}`).delete();
+      this.afStorage.ref(`images/${item.agentServiceid}`).delete();
     }
-    this.itemsRef.doc(item.id).delete();
+    this.itemsRef.doc(item.agentServiceid).delete();
   }
 
 

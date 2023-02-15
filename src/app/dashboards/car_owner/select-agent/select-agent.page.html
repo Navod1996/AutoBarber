@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>My Orders</ion-title>
+    <ion-title>Search Argent</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,10 +8,10 @@
   <ion-searchbar showCancelButton (ionInput)="filterList($event)"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of goalList">
-      <ion-label>{{ item.garadeTitle }}</ion-label>
+      <ion-label>{{ item.title }}</ion-label>
 
-      <ion-thumbnail slot="start" *ngIf="item.garadeimageurl">
-        <img [src]="item.garadeimageurl" alt="">
+      <ion-thumbnail slot="start" *ngIf="item.imageUrl">
+        <img [src]="item.imageUrl" alt="">
       </ion-thumbnail>
       <ion-button slot="end" fill="clear" color="danger" (click)="remove(item)">
         <ion-icon slot="icon-only" name="arrow-forward-circle-outline"></ion-icon>
